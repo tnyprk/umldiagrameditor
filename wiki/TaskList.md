@@ -2,17 +2,25 @@ Tasks:
 ========
 
 
-UML & Simple Editor
+UML & Simple Editor                     Michael && Tony 
 ---------------------
 Simple Editor components
-  Add required methods to circleNode    -- Assigned: Michael
+  Add required methods to circleNode    -- Michael
   Add additional line style(s) 
     VH, HV?
   Create Diamond Node
 
+Sequence Diagram
+  ImplicitParameter
+  CallNode
+  CallEdge
+  NoteNode
+  NoteEdge
+  ReturnEdge
+  SequenceDiagramGraph?
 
 
-Framework
+Framework                              Trevor && Caffrey
 ----------
 
 
