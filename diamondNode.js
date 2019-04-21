@@ -45,10 +45,10 @@ function createDiamondNode (x, y, size) {
       let left = { x: x, y: y + size / 2 }
       let right = { x: x + size, y: y + size / 2 }
 
-      return (p.y < lineFOfX(p.x, left, top) &&
-              p.y < lineFOfX(p.x, top, right) &&
-              p.y > lineFOfX(p.x, right, bottom) &&
-              p.y > lineFOfX(p.x, bottom, left))
+      return (p.y > lineFOfX(p.x, left, top) &&
+              p.y > lineFOfX(p.x, top, right) &&
+              p.y < lineFOfX(p.x, right, bottom) &&
+              p.y < lineFOfX(p.x, bottom, left))
     },
 
     /**
@@ -79,9 +79,16 @@ function createDiamondNode (x, y, size) {
       tmp.x = center.x
       tmp.y = br.y
       dia.points.appendItem(tmp)
+      tmp.x = x
+      tmp.y = center.y
+      dia.points.appendItem(tmp)
+      tmp.x = center.x
+      tmp.y = y
+      dia.points.appendItem(tmp)
 
-      //dia.points = (center.x, y, br.x, center.y, center.x, br.y)
+      // dia.points = (center.x, y, br.x, center.y, center.x, br.y)
       dia.setAttribute('stroke', 'black')
+      dia.setAttribute('fill', 'none')
       panel.appendChild(dia)
     },
 
@@ -100,9 +107,13 @@ function createDiamondNode (x, y, size) {
       @returns the point on the diamondNode to connect the edge to.
     */
     getConnectionPoint: p => {
+      let otherBounds = p.getBounds()
+      let otherCenter = { x: otherBounds.x + otherBounds.width / 2,
+        y: otherBounds.y + otherBounds.width / 2
+      }
       let center = { x: (x + size / 2), y: (y + size / 2) }
-      let dx = p.x - center.x
-      let dy = p.y - center.y
+      let dx = otherCenter.x - center.x
+      let dy = otherCenter.y - center.y
       let ret = p
       if (dx === 0 && dy === 0) {
         return p
