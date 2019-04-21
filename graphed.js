@@ -1,5 +1,6 @@
 "use strict";
 
+
 function drawGrabber(x, y) {
   const size = 5;
   const panel = document.getElementById("graphpanel");
@@ -12,9 +13,9 @@ function drawGrabber(x, y) {
   panel.appendChild(square);
 }
 
-function graph() {
-  nodes = [];
-  edges = [];
+function Graph() {
+  let nodes = [];
+  let edges = [];
   return {
     /**
       Adds an edge to the graph that joins the nodes containing
@@ -40,13 +41,8 @@ function graph() {
       @param {Node} node the node to add
       @param {Point} point the desired location
     */
-    add: (node, point) => {
-      let bounds = node.getBounds();
-      node.translate(
-        point.getX() - bounds.getX(),
-        point.getY() - bounds.getY()
-      );
-      this.nodes.push(node);
+    add: node => {
+        nodes.push(node);
     },
     /**
       Finds a node containing the given point.
@@ -76,10 +72,10 @@ function graph() {
       Draws the graph
    */
     draw: () => {
-      for (const n of this.nodes) {
+      for (const n of nodes) {
         n.draw();
       }
-      for (const e of this.edges) {
+      for (const e of edges) {
         e.draw();
       }
     },
@@ -144,6 +140,30 @@ function graph() {
    */
     getEdges: () => {
       return edges;
+    },
+    getNodePrototypes:()=>{
+        let nodeTypes = [
+            createCircleNode(10, 10, 20, 'white')
+        ]
+        return nodeTypes;
+    },
+    getEdgePrototypes:()=>{
+        let edgeTypes = [
+
+        ];
+        return edgeTypes;
     }
   };
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const graph = Graph()
+    const n1 = createCircleNode(30, 30, 20, 'goldenrod')
+    const n2 = createCircleNode(50, 50, 20, 'blue')
+    graph.add(n1)
+    graph.add(n2)
+    const toolBar = ToolBar(graph)
+    graph.draw()
+    
+    const panel = document.getElementById('graphpanel')
+})
