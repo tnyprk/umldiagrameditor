@@ -141,9 +141,14 @@ function Graph() {
     getEdges: () => {
       return edges;
     },
+    /// not working to get right x and y
     getNodePrototypes:()=>{
-        let nodeTypes = [
-            createCircleNode(10, 10, 20, 'white')
+      let x1 = document.getElementById('blackCircle').getBoundingClientRect();
+      console.log(x1)
+      let x2 = document.getElementById('whiteCircle').getBoundingClientRect();
+      let nodeTypes = [
+            createCircleNode(x1.x,x1.y, 20, 'black'),
+            createCircleNode(x2.x,x2.y, 20, 'yellow')
         ]
         return nodeTypes;
     },

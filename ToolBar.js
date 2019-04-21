@@ -23,19 +23,7 @@ function ToolBar(graph){
         lb:drawGrabber(1 + BUTTON_SIZE - OFFSET, 0 + OFFSET),
         rb:drawGrabber(1 + BUTTON_SIZE - OFFSET, 0 + BUTTON_SIZE - OFFSET)
     }
-    group.push(grabberButton);
-    tools.push(null)
-    // let nodeTypes = graph.getNodePrototypes();
-    // for (let i = 0; i < nodeTypes.length;i++){
-    //     this.add(nodeTypes[i]);
-    // }
-    // let edgeTypes = graph.getEdgePrototypes();
-    // for (let i = 0; i < edgeTypes.length;i++)
-    //    this.add(edgeTypes[i]);
-    // add:(b)=>{
-    //     b.draw();
-    //     tools.push(b);
-    //     group.push(b)
-    // }
-    
+    let grabber = document.getElementById('grabberButton')
+    grabber.innerHTML = `<img src='${grabberButton}'/>`
+
 }
