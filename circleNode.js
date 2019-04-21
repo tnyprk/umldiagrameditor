@@ -67,17 +67,19 @@ function createCircleNode (x, y, size, color) {
       @param p, the point at the other end of the connecting edge.
       @returns the point on the circle node to connect the edge to.
     */
-    getConnectionPoint: p => {
-      let center = { x: (x + size / 2), y: (y + size / 2) }
-      let dx = p.x - center.x
-      let dy = p.y - center.y
-      let dist = Math.sqrt(dx * dx, dy * dy)
+    getConnectionPoint: other => {
+      let bounds = other.getBounds()
+      let otherCenter = { x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2 }
+      let thisCenter = { x: x + size / 2, y: y + size / 2 }
+      let dx = otherCenter.x - thisCenter.x
+      let dy = otherCenter.y - thisCenter.y
+      let dist = Math.sqrt(dx * dx + dy * dy)
       if (dist === 0) {
-        return p
+        return otherCenter
       } else {
         return {
-          x: (center.x + dx * (size / 2) / dist),
-          y: (center.y + dy * (size / 2) / dist)
+          x: (thisCenter.x + dx * (size / 2) / dist),
+          y: (thisCenter.y + dy * (size / 2) / dist)
         }
       }
     },
