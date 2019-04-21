@@ -22,5 +22,8 @@ Sequence Diagram
 
 Framework: Trevor && Caffrey
 
+Create basic frame for Graph
+   MenuBar, ToolBar.
 
+Create buttons for Node
 
