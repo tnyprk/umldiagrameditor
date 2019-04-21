@@ -1,0 +1,28 @@
+<html xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=UTF-8'/> 
+    <title>Graph Editor</title> 
+    <link href='graphed.css' rel='stylesheet' type='text/css'/> 
+    <script src='graphed.js' type='text/javascript'></script> 
+    </head>   
+  <body>
+    <div>
+        <div class="dropdown">
+            <button class="dropbtn" id="File">File</button>
+            <div class="dropdown-content">
+              <button id="Open">Open</button>
+              <button id="Save">Save</button>
+              <button id="Exit">Exit</button>
+            </div>
+          </div>
+          <div class="dropdown">
+              <button class="dropbtn" id="Edit">Edit</button>
+              <div class="dropdown-content">
+                <button id="Delete">Delete</button>
+                <button id="Properties">Properties</button>
+              </div>
+            </div>
+    </div>
+    <svg id='graphpanel' xmlns='http://www.w3.org/2000/svg'></svg>
+  </body>
+</html>
