@@ -1,26 +1,26 @@
-Tasks:
-========
+### Tasks:
 
 
-UML & Simple Editor                     Michael && Tony 
----------------------
-Simple Editor components
-  Add required methods to circleNode    -- Michael
-  Add additional line style(s) 
-    VH, HV?
-  Create Diamond Node
 
-Sequence Diagram
-  ImplicitParameter
-  CallNode
-  CallEdge
-  NoteNode
-  NoteEdge
-  ReturnEdge
-  SequenceDiagramGraph?
+#### UML & Simple Editor: Michael && Tony 
+
+*Simple Editor components
+   *Add required methods to circleNode    -- Michael
+   *Add additional line style(s) 
+   *VH, HV?
+   *Create Diamond Node
+
+*Sequence Diagram
+   *ImplicitParameter
+   *CallNode
+   *CallEdge
+   *NoteNode
+   *NoteEdge
+   *ReturnEdge
+   *SequenceDiagramGraph?
 
 
-Framework                              Trevor && Caffrey
-----------
+#### Framework: Trevor && Caffrey
+
 
 
