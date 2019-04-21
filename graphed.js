@@ -20,9 +20,9 @@ function graph() {
       Adds an edge to the graph that joins the nodes containing
       the given points. If the points aren't both inside nodes,
       then no edge is added.
-      @param {edge} e the edge to add
-      @param {point} p1 a point in the starting node
-      @param {point} p2 a point in the ending node
+      @param {Edge} edge the edge to add
+      @param {Point} point1 a point in the starting node
+      @param {Point} point2 a point in the ending node
    */
     connect: (point1, edge, point2) => {
       let n1 = findNode(point1);
@@ -37,8 +37,8 @@ function graph() {
     /**
       Adds a node to the graph so that the top left corner of
       the bounding rectangle is at the given point.
-      @param {node} n the node to add
-      @param {point} p the desired location
+      @param {Node} node the node to add
+      @param {Point} point the desired location
     */
     add: (node, point) => {
       let bounds = node.getBounds();
@@ -50,7 +50,7 @@ function graph() {
     },
     /**
       Finds a node containing the given point.
-      @param {point} p a point
+      @param {Point} point a point
       @return a node containing p or null if no nodes contain p
    */
     findNode: point => {
@@ -62,7 +62,7 @@ function graph() {
     },
     /**
       Finds an edge containing the given point.
-      @param {point} p a point
+      @param {Point} point a point
       @return an edge containing p or null if no edges contain p
    */
     findEdge: point => {
@@ -82,6 +82,68 @@ function graph() {
       for (const e of this.edges) {
         e.draw();
       }
+    },
+    /**
+      Removes a node and all edges that start or end with that node
+      @param {Node} node the node to remove
+   */
+    removeNode: node => {
+      for (let i = edges.size() - 1; i >= 0; i--) {
+        let e = edges.get(i);
+        if (e.getStart() == n || e.getEnd() == n)
+          for (let i = 0; i < edges.length; i++) {
+            if (edges[i] === e) {
+              edges.splice(i, 1);
+            }
+          }
+      }
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i] === node) {
+          nodes.splice(i, 1);
+        }
+      }
+    },
+    /**
+      Removes an edge from the graph.
+      @param {Edge} e the edge to remove
+   */
+    removeEdge: e => {
+      for (let i = 0; i < edges.length; i++) {
+        if (edges[i] === e) {
+          edges.splice(i, 1);
+        }
+      }
+    },
+    /**
+      Gets the smallest rectangle enclosing the graph
+      @return the bounding rectangle
+   */
+    getBounds: () => {
+      let r = null;
+      for (let i = 0; i < nodes.length; i++) {
+        let n = nodes[i];
+        b = n.getBounds();
+        if (r === null) r = b;
+        else r.push(b);
+      }
+      for (let i = 0; i < edges.length; i++) r.push(e.getBounds());
+      return r === null
+        ? document.createElementNS("http://www.w3.org/2000/svg", "rect")
+        : r;
+    },
+    /**
+      Gets the nodes of this graph.
+      @return an unmodifiable list of the nodes
+   */
+    getNodes: () => {
+      return nodes;
+    },
+    /**
+      Gets the edges of this graph.
+      @return an unmodifiable list of the edges
+   */
+    getEdges: () => {
+      return edges;
     }
   };
 }
