@@ -5,10 +5,10 @@ Tasks:
 UML & Simple Editor: Michael && Tony 
 
 Simple Editor components
-   Add required methods to circleNode    -- Michael
-   Add additional line style(s) 
-   VH, HV?
-   Create Diamond Node
+   Add required methods to circleNode    -- Michael (complete)
+   Add additional line style(s)          -- Michael (complete)
+     VH, HV
+   Create Diamond Node                   -- Michael (complete)
 
 Sequence Diagram
    ImplicitParameter
