@@ -17,6 +17,17 @@ function Graph() {
   let nodes = [];
   let edges = [];
   return {
+    drawGrabber: (x, y) => {
+      const size = 5;
+      const panel = document.getElementById("graphpanel");
+      const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      square.setAttribute("x", x - size / 2);
+      square.setAttribute("y", y - size / 2);
+      square.setAttribute("width", size);
+      square.setAttribute("height", size);
+      square.setAttribute("fill", "black");
+      panel.appendChild(square);
+    },
     /**
       Adds an edge to the graph that joins the nodes containing
       the given points. If the points aren't both inside nodes,

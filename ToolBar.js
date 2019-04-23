@@ -1,16 +1,5 @@
 'use strict'
 
-function drawGrabber(x, y) {
-    const size = 5;
-    const panel = document.getElementById("graphpanel");
-    const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    square.setAttribute("x", x - size / 2);
-    square.setAttribute("y", y - size / 2);
-    square.setAttribute("width", size);
-    square.setAttribute("height", size);
-    square.setAttribute("fill", "black");
-    panel.appendChild(square);
-  }
 
 function ToolBar(graph){
     let group = [];
@@ -25,5 +14,6 @@ function ToolBar(graph){
     }
     let grabber = document.getElementById('grabberButton')
     grabber.innerHTML = `<img src='${grabberButton}'/>`
+
 
 }
