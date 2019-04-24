@@ -1,18 +1,5 @@
 "use strict";
 
-
-function drawGrabber(x, y) {
-  const size = 5;
-  const panel = document.getElementById("graphpanel");
-  const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  square.setAttribute("x", x - size / 2);
-  square.setAttribute("y", y - size / 2);
-  square.setAttribute("width", size);
-  square.setAttribute("height", size);
-  square.setAttribute("fill", "black");
-  panel.appendChild(square);
-}
-
 function Graph() {
   let nodes = [];
   let edges = [];
@@ -154,12 +141,9 @@ function Graph() {
     },
     /// not working to get right x and y
     getNodePrototypes:()=>{
-      let x1 = document.getElementById('blackCircle').getBoundingClientRect();
-      console.log(x1)
-      let x2 = document.getElementById('whiteCircle').getBoundingClientRect();
       let nodeTypes = [
-            createCircleNode(x1.x,x1.y, 20, 'black'),
-            createCircleNode(x2.x,x2.y, 20, 'yellow')
+            createCircleNode(28.5,1.5, 20, 'black'),
+            createCircleNode(54.5,1.5, 20, 'yellow')
         ]
         return nodeTypes;
     },
@@ -174,12 +158,12 @@ function Graph() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const graph = Graph()
-    const n1 = createCircleNode(30, 30, 20, 'goldenrod')
-    const n2 = createCircleNode(50, 50, 20, 'blue')
-    graph.add(n1)
-    graph.add(n2)
+    // const n1 = createCircleNode(30, 30, 20, 'goldenrod')
+    // const n2 = createCircleNode(50, 50, 20, 'blue')
+    // graph.add(n1)
+    // graph.add(n2)
     const toolBar = ToolBar(graph)
-    graph.draw()
+    // graph.draw()
     
     const panel = document.getElementById('graphpanel')
 })
