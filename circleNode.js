@@ -6,7 +6,7 @@
    @param size,  The size(diamter) of the Circle Node
    @param color, The the Color of circle Node (White,Black)
 */
-function createCircleNode (x, y, size, color) {
+function createCircleNode (size, color) {
   return {
     /**
       Get the boundary box of the circle node

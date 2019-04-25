@@ -6,14 +6,15 @@ function Graph() {
   return {
     drawGrabber: (x, y) => {
       const size = 5;
-      const panel = document.getElementById("graphpanel");
+      //const panel = document.getElementById("graphpanel");
       const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       square.setAttribute("x", x - size / 2);
       square.setAttribute("y", y - size / 2);
       square.setAttribute("width", size);
       square.setAttribute("height", size);
       square.setAttribute("fill", "black");
-      panel.appendChild(square);
+      return square
+      //panel.appendChild(square);
     },
     /**
       Adds an edge to the graph that joins the nodes containing
@@ -142,8 +143,8 @@ function Graph() {
     /// not working to get right x and y
     getNodePrototypes:()=>{
       let nodeTypes = [
-            createCircleNode(28.5,1.5, 20, 'black'),
-            createCircleNode(54.5,1.5, 20, 'yellow')
+            createCircleNode(0,0, 25, 'black'),
+            createCircleNode(0.5,0, 25, 'yellow')
         ]
         return nodeTypes;
     },
@@ -156,6 +157,8 @@ function Graph() {
   };
 }
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const graph = Graph()
     // const n1 = createCircleNode(30, 30, 20, 'goldenrod')
@@ -163,7 +166,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // graph.add(n1)
     // graph.add(n2)
     const toolBar = ToolBar(graph)
-    // graph.draw()
+    document.addEventListener('mousedup',event=>{
+      console.log(toolBar.isSelected())
     
+    })
+
     const panel = document.getElementById('graphpanel')
 })
