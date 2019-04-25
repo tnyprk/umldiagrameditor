@@ -7,6 +7,8 @@
    @param color, The the Color of circle Node (White,Black)
 */
 function createCircleNode (size, color) {
+  let x = 0;
+  let y = 0;
   return {
     /**
       Get the boundary box of the circle node
@@ -43,8 +45,8 @@ function createCircleNode (size, color) {
     /**
       Draws the circle node
     */
-    draw: () => {
-      const panel = document.getElementById('graphpanel')
+    draw: (panel) => {
+      //const panel = document.getElementById('graphpanel')
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
       circle.setAttribute('cx', x + size / 2)
       circle.setAttribute('cy', y + size / 2)

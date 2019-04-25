@@ -1,46 +1,75 @@
 'use strict'
 
+function drawGrab(x, y, panel)  {
+    const size = 10;
+    // const panel = document.getElementById("graphpanel");
+    const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    square.setAttribute("x", x - size / 2);
+    square.setAttribute("y", y - size / 2);
+    square.setAttribute("width", size);
+    square.setAttribute("height", size);
+    square.setAttribute("fill", "black");
+    panel.appendChild(square);
+  }
 
 function ToolBar(graph){
-    const BUTTON_SIZE = 25;
-    const OFFSET = 4;
-    let selected;
-    let group = document.getElementById("toolBar");
-    const button = document.createElement("button");
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    svg.setAttribute("width",25)
-    svg.setAttribute("height",25)
-        svg.append(graph.drawGrabber(0 + OFFSET, 0 + OFFSET))
-        svg.append(graph.drawGrabber(0 + OFFSET, 0 + BUTTON_SIZE - OFFSET))
-        svg.append(graph.drawGrabber(0 + BUTTON_SIZE - OFFSET, 0 + OFFSET))
-        svg.append(graph.drawGrabber(0 + BUTTON_SIZE - OFFSET, 0 + BUTTON_SIZE - OFFSET))
-    button.appendChild(svg)
-    group.appendChild(button);
-    let nodes = graph.getNodePrototypes()
-    for (let i = 0; i < nodes.length;i++){
-        const button = document.createElement("button");
-        button.setAttribute('id',i)
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-        svg.setAttribute("width",25)
-        svg.setAttribute("height",25)
-        const circle = nodes[i].draw()
-        //button.setAttribute("onclick",getSelectedTool);
-        button.onclick =() => getSelectedTools(nodes[i]) 
-        svg.append(circle)
-        button.append(svg)
-        group.appendChild(button)
+    const BUTTON_SIZE = 50;
+    const toolbar = document.getElementById('toolbar');
+
+    let offSet = 1;
+    function addButton(toolbar,image){
+        const icon = document.createElementNS('http://www.w3.org/2000/svg','svg')
+        const rect = document.createElementNS('http://www.w3.org/2000/svg','rect')
+        rect.setAttribute('x',offSet * BUTTON_SIZE );
+        rect.setAttribute('width',BUTTON_SIZE);
+        rect.setAttribute('height',BUTTON_SIZE);
+        rect.setAttribute('stroke','black');
+        rect.setAttribute('fill','white');
+        icon.appendChild(rect);
+        icon.addEventListener('click',turnOn);
+        let size = image.getSize()
+        image.translate(offSet * BUTTON_SIZE + size/2, size / 2)
+        image.draw(icon)
+        toolbar.appendChild(icon)
+
+        function turnOn(){
+            if(rect.getAttribute('fill') === 'white'){
+                rect.setAttribute('fill','red')
+            }else{
+                rect.setAttribute('fill','white')
+            }
+        }
+        offSet++;
     }
-    function getSelectedTools(node){
-        ToolBar.prototype.selected = node
-      }
-  
-    
-    return {
-        isSelected: () =>{
-            return selected;
-        },
-    };
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg','svg')
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect')
+    rect.setAttribute('x',0);
+    rect.setAttribute('width',BUTTON_SIZE);
+    rect.setAttribute('height',BUTTON_SIZE);
+    rect.setAttribute('stroke','black');
+    rect.setAttribute('fill','white');
+    icon.appendChild(rect);
+    icon.addEventListener('click',turnOn);
+    toolbar.appendChild(icon)
+    drawGrab(10,10,icon);
+    drawGrab(BUTTON_SIZE - 10, 10,icon);
+    drawGrab(10, BUTTON_SIZE - 10,icon)
+    drawGrab(BUTTON_SIZE - 10,BUTTON_SIZE - 10,icon)
+    function turnOn(){
+        if(rect.getAttribute('fill') === 'white'){
+            rect.setAttribute('fill','red')
+        }else{
+            rect.setAttribute('fill','white')
+        }
+    }
+
+    const nodes = graph.getNodePrototypes()
+    for (let i = 0; i < nodes.length;i++){
+        addButton(toolbar,nodes[i])
+    }
+
+
+
 }
-
-
 

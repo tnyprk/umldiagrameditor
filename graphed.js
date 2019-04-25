@@ -1,21 +1,22 @@
 "use strict";
 
+function drawGrabber(x, y)  {
+  const size = 5;
+  const panel = document.getElementById("graphpanel");
+  const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  square.setAttribute("x", x - size / 2);
+  square.setAttribute("y", y - size / 2);
+  square.setAttribute("width", size);
+  square.setAttribute("height", size);
+  square.setAttribute("fill", "black");
+  return square
+  panel.appendChild(square);
+}
+
 function Graph() {
   let nodes = [];
   let edges = [];
   return {
-    drawGrabber: (x, y) => {
-      const size = 5;
-      //const panel = document.getElementById("graphpanel");
-      const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-      square.setAttribute("x", x - size / 2);
-      square.setAttribute("y", y - size / 2);
-      square.setAttribute("width", size);
-      square.setAttribute("height", size);
-      square.setAttribute("fill", "black");
-      return square
-      //panel.appendChild(square);
-    },
     /**
       Adds an edge to the graph that joins the nodes containing
       the given points. If the points aren't both inside nodes,
@@ -143,8 +144,8 @@ function Graph() {
     /// not working to get right x and y
     getNodePrototypes:()=>{
       let nodeTypes = [
-            createCircleNode(0,0, 25, 'black'),
-            createCircleNode(0.5,0, 25, 'yellow')
+            createCircleNode( 25, 'black'),
+            createCircleNode( 25, 'yellow')
         ]
         return nodeTypes;
     },
@@ -166,10 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // graph.add(n1)
     // graph.add(n2)
     const toolBar = ToolBar(graph)
-    document.addEventListener('mousedup',event=>{
-      console.log(toolBar.isSelected())
-    
-    })
+
 
     const panel = document.getElementById('graphpanel')
 })
