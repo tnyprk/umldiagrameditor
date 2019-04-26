@@ -145,7 +145,8 @@ function Graph() {
     getNodePrototypes:()=>{
       let nodeTypes = [
             createCircleNode( 25, 'black'),
-            createCircleNode( 25, 'yellow')
+            createCircleNode( 25, 'yellow'),
+            createDiamondNode(0, 0, 25)
         ]
         return nodeTypes;
     },
@@ -167,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // graph.add(n1)
     // graph.add(n2)
     const toolBar = ToolBar(graph)
+    const propertySheet = PropertySheet(graph)
 
 
     const panel = document.getElementById('graphpanel')

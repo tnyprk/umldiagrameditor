@@ -64,8 +64,8 @@ function createDiamondNode (x, y, size) {
     /**
       Draws the diamondNode
     */
-    draw: () => {
-      const panel = document.getElementById('graphpanel')
+    draw: (panel) => {
+      //const panel = document.getElementById('graphpanel')
       const dia = document.createElementNS('http://www.w3.org/2000/svg', 'polygon')
       let center = { x: x + size / 2, y: y + size / 2 }
       let br = { x: x + size, y: y + size } // Bottom right corner
@@ -90,6 +90,14 @@ function createDiamondNode (x, y, size) {
       dia.setAttribute('stroke', 'black')
       dia.setAttribute('fill', 'none')
       panel.appendChild(dia)
+    },
+
+    /**
+      Gets the size(diameter) of this circle node
+      @returns the diameter of this circle node
+    */
+    getSize: () => {
+      return size
     },
 
     /**
