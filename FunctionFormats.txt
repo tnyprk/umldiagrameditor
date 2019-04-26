@@ -1,1 +1,13 @@
-Test
+Function methods
+Node: 
+draw : (panel) /*panel being drawn into*/
+translate: (dx, dy) 
+contains: p /*point*/
+getBounds: ()
+clone: ()
+getConnectionPoint: other /* other node */
+getProperties() /* Returns the properties in an array in the following format [propertyName, possibleValues /* as an array or 'text' to designate as text */, getterMethod, setterMethod, ...]
+
+edges: TBD
+
+
