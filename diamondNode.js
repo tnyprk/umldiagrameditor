@@ -1,11 +1,12 @@
 
 /** Class for a Diamond Node in a simple graph editor
    @constructor
-   @param x,     The x coordinate of the top left corner
-   @param y,     The y coordinate of the top left corner
    @param size,  The size(diamter) of the diamondNode
 */
-function createDiamondNode (x, y, size) {
+function createDiamondNode (size) {
+
+  let x = 0
+  let y = 0
   /**
     Given start and end points for a line, find the equation for the
     line, and calculate f of x for the given value.
@@ -65,8 +66,7 @@ function createDiamondNode (x, y, size) {
       Draws the diamondNode
     */
     draw: (panel) => {
-      //const panel = document.getElementById('graphpanel')
-      const dia = document.createElementNS('http://www.w3.org/2000/svg', 'polygon')
+      const dia = document.createElementNS('http://www.w3.org/2000/svg', 'polygon') 
       let center = { x: x + size / 2, y: y + size / 2 }
       let br = { x: x + size, y: y + size } // Bottom right corner
       let tmp = panel.createSVGPoint()
@@ -86,7 +86,6 @@ function createDiamondNode (x, y, size) {
       tmp.y = y
       dia.points.appendItem(tmp)
 
-      // dia.points = (center.x, y, br.x, center.y, center.x, br.y)
       dia.setAttribute('stroke', 'black')
       dia.setAttribute('fill', 'none')
       panel.appendChild(dia)
@@ -115,13 +114,9 @@ function createDiamondNode (x, y, size) {
       @returns the point on the diamondNode to connect the edge to.
     */
     getConnectionPoint: p => {
-      let otherBounds = p.getBounds()
-      let otherCenter = { x: otherBounds.x + otherBounds.width / 2,
-        y: otherBounds.y + otherBounds.width / 2
-      }
       let center = { x: (x + size / 2), y: (y + size / 2) }
-      let dx = otherCenter.x - center.x
-      let dy = otherCenter.y - center.y
+      let dx = p.x - center.x
+      let dy = p.y - center.y
       let ret = p
       if (dx === 0 && dy === 0) {
         return p

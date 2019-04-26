@@ -1,8 +1,6 @@
 
 /** Class for a Circle Node in a simple graph editor
    @constructor
-   @param x,     The x coordinate of the top left corner
-   @param y,     The y coordinate of the top left corner
    @param size,  The size(diamter) of the Circle Node
    @param color, The the Color of circle Node (White,Black)
 */
@@ -46,7 +44,6 @@ function createCircleNode (size, color) {
       Draws the circle node
     */
     draw: (panel) => {
-      //const panel = document.getElementById('graphpanel')
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
       circle.setAttribute('cx', x + size / 2)
       circle.setAttribute('cy', y + size / 2)
@@ -69,15 +66,13 @@ function createCircleNode (size, color) {
       @param p, the point at the other end of the connecting edge.
       @returns the point on the circle node to connect the edge to.
     */
-    getConnectionPoint: other => {
-      let bounds = other.getBounds()
-      let otherCenter = { x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2 }
+    getConnectionPoint: p => {
       let thisCenter = { x: x + size / 2, y: y + size / 2 }
-      let dx = otherCenter.x - thisCenter.x
-      let dy = otherCenter.y - thisCenter.y
+      let dx = p.x - thisCenter.x
+      let dy = p.y - thisCenter.y
       let dist = Math.sqrt(dx * dx + dy * dy)
       if (dist === 0) {
-        return otherCenter
+        return p
       } else {
         return {
           x: (thisCenter.x + dx * (size / 2) / dist),
