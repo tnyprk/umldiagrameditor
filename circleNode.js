@@ -57,7 +57,7 @@ function createCircleNode (size, color) {
       @returns a new circle node with the same size, position, color
     */
     clone: () => {
-      return createCircleNode(x, y, size, color)
+      return createCircleNode(size, color)
     },
 
     /**
