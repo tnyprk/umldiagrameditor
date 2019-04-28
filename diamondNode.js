@@ -104,7 +104,7 @@ function createDiamondNode (size) {
       @returns a new diamondNode with the same size and position
     */
     clone: () => {
-      return createDiamondNode(x, y, size)
+      return createDiamondNode(size)
     },
 
     /**

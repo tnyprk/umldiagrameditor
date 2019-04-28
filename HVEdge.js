@@ -37,6 +37,9 @@ function createHVEdge () {
 
       panel.appendChild(hE)
       panel.appendChild(vE)
+    },
+    getType: () => {
+      return "EDGE"
     }
 
     // This likely does not work. Not yet tested.
