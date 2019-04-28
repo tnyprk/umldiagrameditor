@@ -130,6 +130,9 @@ function createDiamondNode (size) {
         ret = { x: x, y: center.y }
       }
       return ret
+    },
+    getType:()=>{
+      return "NODE";
     }
 
   }

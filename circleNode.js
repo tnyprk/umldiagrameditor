@@ -111,7 +111,9 @@ function createCircleNode (size, color) {
     */
     setColor: c => {
       color = c
+    },
+    getType:()=>{
+      return "NODE";
     }
-
   }
 }

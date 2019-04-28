@@ -11,12 +11,13 @@ function createLineEdge () {
       start = s
       end = e
     },
+    clone:()=>{
+      return createLineEdge();
+    },
     draw: (panel) => {
       const edge = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
       let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
-
       edge.setAttribute('x1', sp.x)
       edge.setAttribute('y1', sp.y)
       edge.setAttribute('x2', ep.x)
@@ -24,6 +25,15 @@ function createLineEdge () {
       edge.setAttribute('stroke', 'black')
       edge.setAttribute('stroke-width', 2)
       panel.appendChild(edge)
+    },
+    getType:()=>{
+      return "EDGE"
+    },
+    getStart:()=>{
+      return start
+    },
+    getEnd:()=>{
+      return end
     }
   }
 }

@@ -25,12 +25,12 @@ function Graph() {
       @param {Point} point1 a point in the starting node
       @param {Point} point2 a point in the ending node
    */
-    connect: (point1, edge, point2) => {
-      let n1 = findNode(point1);
-      let n2 = findNode(point2);
-      if (n1 != null && n2 != null) {
-        e.connect(n1, n2);
-        edges.add(edge);
+    connect (point1, point2,edge) {
+      let n1 = this.findNode(point1);
+      let n2 = this.findNode(point2);
+      if (n1 !== null && n2 !== null) {
+        edge.connect(n1, n2);
+        edges.push(edge);
         return true;
       }
       return false;
@@ -41,7 +41,7 @@ function Graph() {
       @param {Node} node the node to add
       @param {Point} point the desired location
     */
-    add: node => {
+    add(node){
         nodes.push(node);
     },
     /**
@@ -49,9 +49,9 @@ function Graph() {
       @param {Point} point a point
       @return a node containing p or null if no nodes contain p
    */
-    findNode: point => {
-      for (let i = this.nodes.length - 1; i >= 0; i--) {
-        const n = this.nodes[i];
+    findNode (point){
+      for (let i = nodes.length - 1; i >= 0; i--) {
+         const n = nodes[i];
         if (n.contains(point)) return n;
       }
       return undefined;
@@ -61,7 +61,7 @@ function Graph() {
       @param {Point} point a point
       @return an edge containing p or null if no edges contain p
    */
-    findEdge: point => {
+    findEdge(point) {
       for (let i = edges.size() - 1; i >= 0; i--) {
         const e = edges.get(i);
         if (e.contains(point)) return e;
@@ -71,22 +71,23 @@ function Graph() {
     /**
       Draws the graph
    */
-    draw: () => {
+    draw() {
+      const panel = document.getElementById("graphpanel");
       for (const n of nodes) {
-        n.draw();
+        n.draw(panel);
       }
       for (const e of edges) {
-        e.draw();
+        e.draw(panel);
       }
     },
     /**
       Removes a node and all edges that start or end with that node
       @param {Node} node the node to remove
    */
-    removeNode: node => {
-      for (let i = edges.size() - 1; i >= 0; i--) {
-        let e = edges.get(i);
-        if (e.getStart() == n || e.getEnd() == n)
+    removeNode(node) {
+      for (let i = edges.length - 1; i >= 0; i--) {
+        let e = edges[i];
+        if (e.getStart() == node || e.getEnd() == node)
           for (let i = 0; i < edges.length; i++) {
             if (edges[i] === e) {
               edges.splice(i, 1);
@@ -103,7 +104,7 @@ function Graph() {
       Removes an edge from the graph.
       @param {Edge} e the edge to remove
    */
-    removeEdge: e => {
+    removeEdge(e) {
       for (let i = 0; i < edges.length; i++) {
         if (edges[i] === e) {
           edges.splice(i, 1);
@@ -114,7 +115,7 @@ function Graph() {
       Gets the smallest rectangle enclosing the graph
       @return the bounding rectangle
    */
-    getBounds: () => {
+    getBounds(){
       let r = null;
       for (let i = 0; i < nodes.length; i++) {
         let n = nodes[i];
@@ -131,18 +132,18 @@ function Graph() {
       Gets the nodes of this graph.
       @return an unmodifiable list of the nodes
    */
-    getNodes: () => {
+    getNodes() {
       return nodes;
     },
     /**
       Gets the edges of this graph.
       @return an unmodifiable list of the edges
    */
-    getEdges: () => {
+    getEdges(){
       return edges;
     },
     /// not working to get right x and y
-    getNodePrototypes:()=>{
+    getNodePrototypes(){
       let nodeTypes = [
             createCircleNode( 25, 'black'),
             createCircleNode( 25, 'yellow'),
@@ -150,9 +151,9 @@ function Graph() {
         ]
         return nodeTypes;
     },
-    getEdgePrototypes:()=>{
+    getEdgePrototypes(){
         let edgeTypes = [
-
+          createLineEdge()
         ];
         return edgeTypes;
     }
