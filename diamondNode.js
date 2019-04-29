@@ -7,6 +7,16 @@ function createDiamondNode (size) {
 
   let x = 0
   let y = 0
+    
+  // These 2 functions exist until a better method is found of 
+  // passing needed functions to the property sheet.
+  function  p1Getter() {
+      return size
+  }
+  function  p1Setter(s) {
+      size = s
+  }
+
   /**
     Given start and end points for a line, find the equation for the
     line, and calculate f of x for the given value.
@@ -92,8 +102,8 @@ function createDiamondNode (size) {
     },
 
     /**
-      Gets the size(diameter) of this circle node
-      @returns the diameter of this circle node
+      Gets the size of this diamond node
+      @returns the of this diamond node
     */
     getSize: () => {
       return size
@@ -104,7 +114,7 @@ function createDiamondNode (size) {
       @returns a new diamondNode with the same size and position
     */
     clone: () => {
-      return createDiamondNode(x, y, size)
+      return createDiamondNode(size)
     },
 
     /**
@@ -133,6 +143,12 @@ function createDiamondNode (size) {
     },
     getType:()=>{
       return "NODE";
+    },
+
+
+
+    getProperties: () => {
+      return ['Size', 'text', p1Getter, p1Setter]
     }
 
   }

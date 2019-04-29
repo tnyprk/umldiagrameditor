@@ -13,13 +13,15 @@ function createHVEdge () {
       start = s
       end = e
     },
+    clone:()=>{
+      return createHVEdge();
+    },
     draw: (panel) => {
       const hE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       const vE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
       let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
-      let middleJoint = { x: sp.x, y: ep.y }
+      let middleJoint = { x: ep.x, y: sp.y }
 
       hE.setAttribute('x1', sp.x)
       hE.setAttribute('y1', sp.y)
@@ -37,6 +39,9 @@ function createHVEdge () {
 
       panel.appendChild(hE)
       panel.appendChild(vE)
+    },
+    getType: () => {
+      return "EDGE"
     }
 
     // This likely does not work. Not yet tested.
