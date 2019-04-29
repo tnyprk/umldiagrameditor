@@ -9,6 +9,9 @@ function createCircleNode (size, color) {
   let y = 0;
   
 
+
+  // These 4 functions exist until a better method is found of 
+  // passing needed functions to the property sheet.
   let p1Getter = function () {
     return size
   }
@@ -21,14 +24,8 @@ function createCircleNode (size, color) {
   let p2Setter = function (c) {
     color = c
   }
+
   
-  function getProps() {
-      let prop1 = {propName: 'Size', propType: 'text', 
-                   propGetter: p1Getter, propSetter: p1Setter}
-      let prop2 = {propName: 'Color', propType: 'text', 
-                   propGetter: p2Getter, propSetter: p2Setter}
-      return { prop1, prop2 }
-  }
 
   return {
     /**
@@ -140,8 +137,11 @@ function createCircleNode (size, color) {
       return "NODE";
     },
     
+
     getProperties: () => {
-      return getProps()
+      let props = ['Size',  'text', p1Getter, p1Setter, 
+                   'Color', 'text', p2Getter, p2Setter]
+      return props
     },
 
     
