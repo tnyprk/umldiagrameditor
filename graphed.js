@@ -9,7 +9,6 @@ function drawGrabber(x, y)  {
   square.setAttribute("width", size);
   square.setAttribute("height", size);
   square.setAttribute("fill", "black");
-  return square
   panel.appendChild(square);
 }
 
