@@ -3,7 +3,7 @@
 
 
 function createImplicitParameter() {
-  let name
+  let name = 'Hello, World!'
   let DEFAULT_TOP_HEIGHT = 60
   let DEFAULT_WIDTH = 80
   let DEFAULT_HEIGHT = 120
@@ -157,10 +157,17 @@ function createImplicitParameter() {
       children.push(c)
       let mid = bounds.x + bounds.width / 2
       c.translate(mid - c.getBounds().width / 2, getTopRect().y + getTopRect().height + 20)
+    },
+
+    getType: () => {
+    return 'NODE'
+    },
+
+
+/////	TEMPORARY
+    getSize: () => {
+      return bounds.width
     }
-
-
-
 
   }
 }
