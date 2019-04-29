@@ -7,6 +7,29 @@
 function createCircleNode (size, color) {
   let x = 0;
   let y = 0;
+  
+
+  let p1Getter = function () {
+    return size
+  }
+  let p1Setter = function (s) {
+    size = s
+  }
+  let p2Getter = function () {
+    return color
+  }
+  let p2Setter = function (c) {
+    color = c
+  }
+  
+  function getProps() {
+      let prop1 = {propName: 'Size', propType: 'text', 
+                   propGetter: p1Getter, propSetter: p1Setter}
+      let prop2 = {propName: 'Color', propType: 'text', 
+                   propGetter: p2Getter, propSetter: p2Setter}
+      return { prop1, prop2 }
+  }
+
   return {
     /**
       Get the boundary box of the circle node
@@ -112,8 +135,17 @@ function createCircleNode (size, color) {
     setColor: c => {
       color = c
     },
+
     getType:()=>{
       return "NODE";
-    }
+    },
+    
+    getProperties: () => {
+      return getProps()
+    },
+
+    
+
+
   }
 }
