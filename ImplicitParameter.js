@@ -11,6 +11,21 @@ function createImplicitParameter() {
   let bounds = { x: 0, y: 0, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT }
 
 
+  let children = []
+  let parent = undefined
+
+
+
+  // These 2 functions exist until a better method is found of 
+  // passing needed functions to the property sheet.
+    function p1Setter(n) {
+      name = n
+    }
+    function p1Getter() {
+      return name
+    }
+
+
   /**
     Helper function, getTopRectangle called at multiple points
     in ImplicitParameter.java
@@ -70,9 +85,7 @@ function createImplicitParameter() {
     /**
       Get the name of the implicit Parameter
     */
-    getName: () => 
-    {
-
+    getName: () => {
       return name
     },
 
@@ -85,14 +98,19 @@ function createImplicitParameter() {
 
 
     getProperties: () => {
-      
+      return ['Name','text', p1Getter, p1Setter]
     },
 
 
     translate: (dx, dy) => {
       bounds.x += dx
       bounds.y += dy
+      for(const c of children) {
+        c.translate(dx, dy)
+
+      }
     },
+
     getBounds: () => {
       return {x: bounds.x, y: bounds.y, 
               width: bounds.width, height: bounds.height}
@@ -132,10 +150,14 @@ function createImplicitParameter() {
       line.setAttribute('stroke-width', '1')
       line.setAttribute('stroke-dasharray', '8 4')
       panel.appendChild(line)
+    },
+
+
+    addChild: c => {
+      children.push(c)
+      let mid = bounds.x + bounds.width / 2
+      c.translate(mid - c.getBounds().width / 2, getTopRect().y + getTopRect().height + 20)
     }
-
-
-
 
 
 
