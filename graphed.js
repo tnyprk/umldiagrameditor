@@ -153,7 +153,9 @@ function Graph() {
     },
     getEdgePrototypes(){
         let edgeTypes = [
-          createLineEdge()
+          createLineEdge(),
+	  createHVEdge(),
+	  createVHEdge()
         ];
         return edgeTypes;
     }
