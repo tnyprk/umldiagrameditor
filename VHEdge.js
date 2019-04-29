@@ -13,6 +13,9 @@ function createVHEdge () {
       start = s
       end = e
     },
+    clone:()=>{
+      return createVHEdge();
+    },
     draw: (panel) => {
       const hE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       const vE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
