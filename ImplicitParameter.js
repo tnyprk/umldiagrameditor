@@ -3,7 +3,7 @@
 
 
 function createImplicitParameter() {
-  let name
+  let name = 'Hello, World!'
   let DEFAULT_TOP_HEIGHT = 60
   let DEFAULT_WIDTH = 80
   let DEFAULT_HEIGHT = 120
@@ -120,6 +120,7 @@ function createImplicitParameter() {
 
     draw: panel => {
       //Draw the Top box of the implicit parameter
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')       
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
       let topRect = getTopRect()
       rect.setAttribute('x', topRect.x)
@@ -129,7 +130,7 @@ function createImplicitParameter() {
       rect.setAttribute('fill', 'white')
       rect.setAttribute('stroke', 'black')
       rect.setAttribute('stroke-width', '1')
-      panel.appendChild(rect)
+      //panel.appendChild(rect)
 
       // Display the text of the implicit parameter
       // Needs better formating
@@ -138,7 +139,15 @@ function createImplicitParameter() {
       text.setAttribute('x', topRect.x)
       text.setAttribute('y', topRect.y + topRect.height / 2)
       text.setAttribute('fill', '#000')
-      panel.appendChild(text)
+      //panel.appendChild(text)      
+
+      svg.appendChild(rect)
+      svg.appendChild(text)
+      panel.appendChild(svg)
+
+
+      
+      
 
       //Draw the vertical line below the top box.
       let line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
@@ -157,10 +166,17 @@ function createImplicitParameter() {
       children.push(c)
       let mid = bounds.x + bounds.width / 2
       c.translate(mid - c.getBounds().width / 2, getTopRect().y + getTopRect().height + 20)
+    },
+
+    getType: () => {
+    return 'NODE'
+    },
+
+
+/////	TEMPORARY
+    getSize: () => {
+      return bounds.width
     }
-
-
-
 
   }
 }
