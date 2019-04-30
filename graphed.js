@@ -144,7 +144,7 @@ function Graph() {
     /// not working to get right x and y
     getNodePrototypes(){
       let nodeTypes = [
-            createCircleNode( 25, 'black'),
+            createCircleNode( 60, 'black'),
             createCircleNode( 25, 'yellow'),
             createDiamondNode(25),
             createImplicitParameter()
