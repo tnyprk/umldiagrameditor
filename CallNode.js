@@ -30,6 +30,11 @@ function createCallNode() {
     getImplicitParameter: () => {
       return implicitParameter
     },
+
+    /**
+     * Sets the implicit parameter of this callNode
+     * @param newValue the implicit parameter node
+     */
     setImplicitParameter: (newValue) => {
       implicitParameter = newValue
     },
