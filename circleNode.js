@@ -9,30 +9,12 @@ function createCircleNode (size, color) {
   let y = 0;
   
 
-
-  // These 4 functions exist until a better method is found of 
-  // passing needed functions to the property sheet.
-  let p1Getter = function () {
-    return size
-  }
-  let p1Setter = function (s) {
-    size = s
-  }
-  let p2Getter = function () {
-    return color
-  }
-  let p2Setter = function (c) {
-    color = c
-  }
-
-  
-
   return {
     /**
       Get the boundary box of the circle node
       @returns A rectangle that bounds the circle node.
     */
-    getBounds: () => {
+    getBounds() {
       return {
         x: x,
         y: y,
@@ -46,7 +28,7 @@ function createCircleNode (size, color) {
       @param p, a point with x and y coordinates to check.
       @returns true if p is contained in this circle node.
     */
-    contains: p => {
+    contains(p) {
       return (x + size / 2 - p.x) ** 2 + (y + size / 2 - p.y) ** 2 <= size ** 2 / 4
     },
 
@@ -55,7 +37,7 @@ function createCircleNode (size, color) {
       @param dx, the change in the x coordinate
       @param dy, the change in the y coordinate
     */
-    translate: (dx, dy) => {
+    translate(dx, dy) {
       x += dx
       y += dy
     },
@@ -63,7 +45,7 @@ function createCircleNode (size, color) {
     /**
       Draws the circle node
     */
-    draw: (panel) => {
+    draw(panel) {
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
       circle.setAttribute('cx', x + size / 2)
       circle.setAttribute('cy', y + size / 2)
@@ -76,7 +58,7 @@ function createCircleNode (size, color) {
       Creates a copy of this circlenode
       @returns a new circle node with the same size, position, color
     */
-    clone: () => {
+    clone() {
       return createCircleNode(size, color)
     },
 
@@ -86,7 +68,7 @@ function createCircleNode (size, color) {
       @param p, the point at the other end of the connecting edge.
       @returns the point on the circle node to connect the edge to.
     */
-    getConnectionPoint: p => {
+    getConnectionPoint(p) {
       let thisCenter = { x: x + size / 2, y: y + size / 2 }
       let dx = p.x - thisCenter.x
       let dy = p.y - thisCenter.y
@@ -105,7 +87,7 @@ function createCircleNode (size, color) {
       Gets the size(diameter) of this circle node
       @returns the diameter of this circle node
     */
-    getSize: () => {
+    getSize() {
       return size
     },
 
@@ -113,7 +95,7 @@ function createCircleNode (size, color) {
       Sets the size(diameter) of this circle node
       @param d, the new diameter of this circle node
     */
-    setSize: d => {
+    setSize(d) {
       size = d
     },
 
@@ -121,7 +103,7 @@ function createCircleNode (size, color) {
       Gets the color of this circle node
       @returns the color of this circle node
     */
-    getColor: () => {
+    getColor() {
       return color
     },
 
@@ -129,18 +111,18 @@ function createCircleNode (size, color) {
       Sets the color of this circle node
       @param d, the new color of this circle node
     */
-    setColor: c => {
+    setColor(c) {
       color = c
     },
 
-    getType:()=>{
+    getType() {
       return "NODE";
     },
     
 
-    getProperties: () => {
-      let props = ['Size',  'text', p1Getter, p1Setter, 
-                   'Color', 'text', p2Getter, p2Setter]
+    getProperties() {
+      let props = ['Size',  'text', this.getSize, this.setSize, 
+                   'Color', 'text', this.getColor, this.setColor]
       return props
     },
 

@@ -14,36 +14,14 @@ function createImplicitParameter() {
   let parent = undefined
 
 
-
-  // These 2 functions exist until a better method is found of 
-  // passing needed functions to the property sheet.
-    function p1Setter(n) {
-      name = n
-    }
-    function p1Getter() {
-      return name
-    }
-
-
-  /**
-    Helper function, getTopRectangle called at multiple points
-    in ImplicitParameter.java
-  */
-  function getTopRect() {
-    return  {x: bounds.x, y: bounds.y, 
-             width: bounds.width, height: topHeight}
-  }
-
   return {
-
-
     /**
       Check that point p is between the min and max x values for this 
       IplicitPrameter
       @param p the point to check.
       @returns true if the point is between the min and max x values, else false.
     */
-    contains: p => {
+    contains(p) {
       return p.x >= bounds.x && p.x <= bounds.x + bounds.width
     },
 
@@ -52,20 +30,21 @@ function createImplicitParameter() {
       Returns the rectangle at the top of the object node.
       @return the top rectangle
    */
-    getTopRectangle: () => {
-      return getTopRect()
+    getTopRectangle() {
+      return {x: bounds.x, y: bounds.y, 
+             width: bounds.width, height: topHeight}
     },
 
     // WHAT DOES THIS DO???
-    getShape: () => {
-      return getTopRect()
+    getShape() {
+      return this.getTopRectangle()
     },
 
     /**
       Gets the connection point for an edge to connect to this node.
       @param d 
     */
-    getConnectionPoint: d => {
+    getConnectionPoint(d) {
       if(d.x > 0)
         return {x: bounds.x + bounds.width, 
                 y: bounds.y + topHeight / 2}
@@ -77,18 +56,18 @@ function createImplicitParameter() {
     /**
       Set the name of the implicit Parameter
     */
-    setName: newName => {
+    setName(newName) {
       name = newName
     },
 
     /**
       Get the name of the implicit Parameter
     */
-    getName: () => {
+    getName() {
       return name
     },
 
-    clone: () => {
+    clone() {
       let ret = createImplicitParameter()
       ret.setName(name)
 
@@ -96,12 +75,12 @@ function createImplicitParameter() {
     },
 
 
-    getProperties: () => {
+    getProperties() {
       return ['Name','text', p1Getter, p1Setter]
     },
 
 
-    translate: (dx, dy) => {
+    translate(dx, dy) {
       bounds.x += dx
       bounds.y += dy
       for(const c of children) {
@@ -110,18 +89,18 @@ function createImplicitParameter() {
       }
     },
 
-    getBounds: () => {
+    getBounds() {
       return {x: bounds.x, y: bounds.y, 
               width: bounds.width, height: bounds.height}
     },
 
 
 
-    draw: panel => {
+    draw(panel) {
       //Draw the Top box of the implicit parameter
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')       
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
-      let topRect = getTopRect()
+      let topRect = this.getTopRectangle()
       rect.setAttribute('x', topRect.x)
       rect.setAttribute('y', topRect.y)
       rect.setAttribute('width', topRect.width)
@@ -145,9 +124,6 @@ function createImplicitParameter() {
       panel.appendChild(svg)
 
 
-      
-      
-
       //Draw the vertical line below the top box.
       let line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       line.setAttribute('x1', topRect.x + topRect.width / 2)
@@ -161,21 +137,19 @@ function createImplicitParameter() {
     },
 
 
-    addChild: c => {
+    addChild(c) {
       children.push(c)
       let mid = bounds.x + bounds.width / 2
       c.translate(mid - c.getBounds().width / 2, getTopRect().y + getTopRect().height + 20)
     },
 
-    getType: () => {
+    getType() {
     return 'NODE'
     },
 
-
-/////	TEMPORARY
-    getSize: () => {
+    getSize() {
       return bounds.width
-    }
+    },
 
   }
 }
