@@ -1,9 +1,5 @@
 'use strict'
 
-
-
-
-
 function createCallNode() {
 
   let DEFAULT_WIDTH = 16;
@@ -14,9 +10,12 @@ function createCallNode() {
 
   let implicitParameter = undefined
 
+  var signaled = false;
+  var openBottom = false;
+
   return {
 
-    draw: panel => {
+    draw: (panel) => {
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
       rect.setAttribute('x', bounds.x)
       rect.setAttribute('y', bounds.y)
@@ -31,6 +30,11 @@ function createCallNode() {
     getImplicitParameter: () => {
       return implicitParameter
     },
+
+    /**
+     * Sets the implicit parameter of this callNode
+     * @param newValue the implicit parameter node
+     */
     setImplicitParameter: (newValue) => {
       implicitParameter = newValue
     },
@@ -56,6 +60,18 @@ function createCallNode() {
       return {x: bounds.x, y: bounds.y, 
               width: bounds.width, height: bounds.height}
     },
+
+    getSignaled: () => {
+      return signaled
+    },
+
+    getOpenBottm: () => {
+      return openBottom
+    },
+
+    getType: () => {
+      return "NODE"
+    }
 
 
   }

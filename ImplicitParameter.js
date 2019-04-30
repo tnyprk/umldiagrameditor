@@ -1,7 +1,6 @@
 'use strict'
 
 
-
 function createImplicitParameter() {
   let name = 'Hello, World!'
   let DEFAULT_TOP_HEIGHT = 60

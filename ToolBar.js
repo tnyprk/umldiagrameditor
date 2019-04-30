@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 function ToolBar(graph){
     const BUTTON_SIZE = 50;
     const panel = document.getElementById("graphpanel");
@@ -9,6 +7,7 @@ function ToolBar(graph){
     let selectedTool
     let selectedIcon
     let offSet = 1;
+
     function addButton(toolbar,image){
         const icon = document.createElementNS('http://www.w3.org/2000/svg','svg')
         const rect = document.createElementNS('http://www.w3.org/2000/svg','rect')
@@ -30,6 +29,7 @@ function ToolBar(graph){
             let size = image.getSize()
             image.translate(offSet * BUTTON_SIZE + size/2, size / 2)
         }
+
         image.draw(icon)
         toolbar.appendChild(icon)
         function turnOn(){
@@ -95,6 +95,7 @@ function ToolBar(graph){
             }
         }
     }
+
     panel.addEventListener('click',handleEvent,true)
 
     const icon = document.createElementNS('http://www.w3.org/2000/svg','svg')
@@ -115,10 +116,12 @@ function ToolBar(graph){
           y: event.clientY - rect.top,
         }
       }
+      
       function repaint(){
         panel.innerHTML = ''
         graph.draw()
       }
+
       function paintEdge(dragStartPoint,mousePoint){
         panel.innerHTML = ''
         const edge = document.createElementNS('http://www.w3.org/2000/svg', 'line')
