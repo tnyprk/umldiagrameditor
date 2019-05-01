@@ -91,9 +91,10 @@ function PropertySheet(object) {
 		
 	function propertyEditor(obj){
 		var prop = obj.getProperties()
-		for (var i = 0; i < prop.length; i++) {
+		for (var i = 0; i < (prop.length/4); i++) {
 			prop[i*4 + 3](document.getElementById('edit' + i).value);
 		}
+		
 	}
 }
 
