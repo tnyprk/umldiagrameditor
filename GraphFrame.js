@@ -128,76 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
 
-
-
-
-
-    // panel.addEventListener('mousedown', event => {
-    //     if(selectedTool){
-    //         if(selectedTool.getType() === "NODE"){
-    //                 console.log("NODE " + selectedTool.getType())
-    //                 const item = selectedTool.clone()
-    //                 var rect = panel.getBoundingClientRect();
-    //                 //let size = item.getSize()
-    //                 item.translate(event.clientX - rect.left ,event.clientY - rect.top)
-    //                 graph.add(item)
-    //                 repaint()
-    //         }
-    //         if(selectedTool.getType() === "EDGE"){
-    //             let edge = selectedTool.clone()
-    //                 console.log("EDGE click")
-    //                 let mousePoint = mouseLocation(event)
-    //                 selected = graph.findNode(mousePoint)
-    //                 console.log(selected.getType)
-    //                 if (selected !== undefined) {
-    //                   dragStartPoint = mousePoint
-    //                 }
-    //               panel.addEventListener('mousemove', event => {
-
-    //               })
-
-    //               panel.addEventListener('mouseup', event => {
-    //                 let mousePoint = mouseLocation(event)
-    //                 console.log("EDGE up")
-    //                 let connectedNode = graph.findNode(mousePoint)
-    //                 if(connectedNode){
-    //                     console.log("here")
-    //                     if(graph.connect(dragStartPoint,mousePoint,edge)){
-    //                         dragStartPoint = undefined
-    //                         repaintEdge()
-    //                         edge = undefined
-    //                     }else{
-    //                         dragStartPoint = undefined
-    //                         edge = undefined
-    //                         repaintEdge()
-    //                     }
-    //                 }else{
-    //                     dragStartPoint = undefined
-    //                     edge = undefined
-    //                     repaintEdge()
-    //                 }
-    //               })
-    //         }
-    //     }else{
-    //             let mousePoint = mouseLocation(event)
-    //             selected = graph.findNode(mousePoint)
-    //             console.log(selected)
-    //             if (selected !== undefined) {
-    //               dragStartPoint = mousePoint
-    //               dragStartBounds = selected.getBounds()
-    //             }
-    //             repaint()
-    //           panel.addEventListener('mousemove', event => {
-
-    //           })
-    //           panel.addEventListener('mouseup', event => {
-    //             dragStartPoint = undefined
-    //             dragStartBounds = undefined
-    //           })
-    //     }
-    // })
-
-            ///repaintEdge functions 
+///repaintEdge functions 
 function mouseLocation(event) {
     var rect = panel.getBoundingClientRect();
     return {
