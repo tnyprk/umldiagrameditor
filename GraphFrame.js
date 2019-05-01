@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let mousePoint = mouseLocation(event)
             selected = graph.findNode(mousePoint)
             console.log(selected)
+			PropertySheet(selected)
             if (selected !== undefined) {
               dragStartPoint = mousePoint
               dragStartBounds = selected.getBounds()
@@ -169,6 +170,6 @@ function mouseLocation(event) {
 
 
 
-    const propertySheet = PropertySheet(graph)
+    //const propertySheet = PropertySheet(graph)
 
 })
