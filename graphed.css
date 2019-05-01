@@ -3,11 +3,11 @@
     width: 1000px;
     height: 800px;
 }
-#propertysheet {
+/*#propertysheet {
     border: solid black thin;
     width: 1000px;
     height: 100px;
-}
+} /*
 
 /* Dropdown Button */
 .dropbtn {
@@ -51,3 +51,7 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  
+  table, th, td {
+  border: 1px solid black;
+}
