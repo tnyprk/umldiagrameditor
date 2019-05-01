@@ -14,6 +14,9 @@ function ToolBar(graph){
     svg.setAttribute("height",BUTTON_SIZE)
      selecter().draw(svg)
      button.appendChild(svg)
+     button.addEventListener("click",function(){
+        setSelected(undefined)
+ })
      toolbar.appendChild(button)
 
     return{
