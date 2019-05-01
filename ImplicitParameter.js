@@ -67,6 +67,7 @@ function createImplicitParameter() {
       return name
     },
 
+
     clone() {
       let ret = createImplicitParameter()
       ret.setName(name)
@@ -98,7 +99,7 @@ function createImplicitParameter() {
 
     draw(panel) {
       //Draw the Top box of the implicit parameter
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')       
+      //const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')       
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
       let topRect = this.getTopRectangle()
       rect.setAttribute('x', topRect.x)
@@ -108,7 +109,7 @@ function createImplicitParameter() {
       rect.setAttribute('fill', 'white')
       rect.setAttribute('stroke', 'black')
       rect.setAttribute('stroke-width', '1')
-      //panel.appendChild(rect)
+      panel.appendChild(rect)
 
       // Display the text of the implicit parameter
       // Needs better formating
@@ -119,10 +120,9 @@ function createImplicitParameter() {
       text.setAttribute('fill', '#000')
       //panel.appendChild(text)      
 
-      svg.appendChild(rect)
-      svg.appendChild(text)
-      panel.appendChild(svg)
-
+    
+      rect.appendChild(text)
+      
 
       //Draw the vertical line below the top box.
       let line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
@@ -134,6 +134,9 @@ function createImplicitParameter() {
       line.setAttribute('stroke-width', '1')
       line.setAttribute('stroke-dasharray', '8 4')
       panel.appendChild(line)
+
+      panel.appendChild(rect)
+
     },
 
 
@@ -150,6 +153,12 @@ function createImplicitParameter() {
     getSize() {
       return bounds.width
     },
+
+    getProperties() {
+      return ['Name', 'text', this.getName, this.setName]
+    }
+
+
 
   }
 }
