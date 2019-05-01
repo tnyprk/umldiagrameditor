@@ -146,7 +146,7 @@ function Graph() {
       let nodeTypes = [
             createCircleNode( 60, 'black'),
             createCircleNode( 25, 'yellow'),
-            createDiamondNode(25),
+            createDiamondNode(60),
             createImplicitParameter()
         ]
         return nodeTypes;
@@ -164,15 +164,4 @@ function Graph() {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const graph = Graph()
-    // const n1 = createCircleNode(30, 30, 20, 'goldenrod')
-    // const n2 = createCircleNode(50, 50, 20, 'blue')
-    // graph.add(n1)
-    // graph.add(n2)
-    const toolBar = ToolBar(graph)
-    const propertySheet = PropertySheet(graph)
 
-
-    const panel = document.getElementById('graphpanel')
-})
