@@ -9,14 +9,14 @@ function createHVEdge () {
   }
 
   return {
-    connect: (s, e) => {
+    connect(s, e) {
       start = s
       end = e
     },
-    clone:()=>{
+    clone() {
       return createHVEdge();
     },
-    draw: (panel) => {
+    draw(panel) {
       const hE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       const vE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
@@ -40,7 +40,7 @@ function createHVEdge () {
       panel.appendChild(hE)
       panel.appendChild(vE)
     },
-    getType: () => {
+    getType() {
       return "EDGE"
     }
 

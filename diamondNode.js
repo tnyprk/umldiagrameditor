@@ -8,15 +8,6 @@ function createDiamondNode (size) {
   let x = 0
   let y = 0
     
-  // These 2 functions exist until a better method is found of 
-  // passing needed functions to the property sheet.
-  function  p1Getter() {
-      return size
-  }
-  function  p1Setter(s) {
-      size = s
-  }
-
   /**
     Given start and end points for a line, find the equation for the
     line, and calculate f of x for the given value.
@@ -36,7 +27,7 @@ function createDiamondNode (size) {
       Get the boundary box of the diamondNode
       @returns A rectangle that bounds the diamondNode.
     */
-    getBounds: () => {
+    getBounds() {
       return {
         x: x,
         y: y,
@@ -50,7 +41,7 @@ function createDiamondNode (size) {
       @param p, a point with x and y coordinates to check.
       @returns true if p is contained in this diamondNode.
     */
-    contains: p => {
+    contains(p) {
       let top = { x: x + size / 2, y: y }
       let bottom = { x: x + size / 2, y: y + size }
       let left = { x: x, y: y + size / 2 }
@@ -67,7 +58,7 @@ function createDiamondNode (size) {
       @param dx, the change in the x coordinate
       @param dy, the change in the y coordinate
     */
-    translate: (dx, dy) => {
+    translate(dx, dy) {
       x += dx
       y += dy
     },
@@ -75,7 +66,7 @@ function createDiamondNode (size) {
     /**
       Draws the diamondNode
     */
-    draw: (panel) => {
+    draw(panel) {
       const dia = document.createElementNS('http://www.w3.org/2000/svg', 'polygon') 
       let center = { x: x + size / 2, y: y + size / 2 }
       let br = { x: x + size, y: y + size } // Bottom right corner
@@ -105,15 +96,22 @@ function createDiamondNode (size) {
       Gets the size of this diamond node
       @returns the of this diamond node
     */
-    getSize: () => {
+    getSize() {
       return size
     },
 
     /**
+      Sets the size of this diamond node
+      @param the of this diamond node
+    */
+    setSize(s) {
+      size = s
+    },
+    /**
       Creates a copy of this diamondNode
       @returns a new diamondNode with the same size and position
     */
-    clone: () => {
+    clone() {
       return createDiamondNode(size)
     },
 
@@ -123,7 +121,7 @@ function createDiamondNode (size) {
       @param p, the point at the other end of the connecting edge.
       @returns the point on the diamondNode to connect the edge to.
     */
-    getConnectionPoint: p => {
+    getConnectionPoint(p) {
       let center = { x: (x + size / 2), y: (y + size / 2) }
       let dx = p.x - center.x
       let dy = p.y - center.y
@@ -141,14 +139,12 @@ function createDiamondNode (size) {
       }
       return ret
     },
-    getType:()=>{
+    getType() {
       return "NODE";
     },
 
-
-
-    getProperties: () => {
-      return ['Size', 'text', p1Getter, p1Setter]
+    getProperties() {
+      return ['Size', 'text', this.getSize, this.setSize]
     }
 
   }

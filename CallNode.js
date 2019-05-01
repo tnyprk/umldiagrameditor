@@ -15,7 +15,7 @@ function createCallNode() {
 
   return {
 
-    draw: (panel) => {
+    draw(panel) {
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
       rect.setAttribute('x', bounds.x)
       rect.setAttribute('y', bounds.y)
@@ -27,7 +27,7 @@ function createCallNode() {
       panel.appendChild(rect)
     },
 
-    getImplicitParameter: () => {
+    getImplicitParameter() {
       return implicitParameter
     },
 
@@ -35,11 +35,11 @@ function createCallNode() {
      * Sets the implicit parameter of this callNode
      * @param newValue the implicit parameter node
      */
-    setImplicitParameter: (newValue) => {
+    setImplicitParameter(newValue) {
       implicitParameter = newValue
     },
 
-    getConnectionPoint: d => {
+    getConnectionPoint(d) {
       if (d.x > 0) 
         return {x: bounds.x + bounds.width, y: bounds.y}
       else 
@@ -47,29 +47,29 @@ function createCallNode() {
     },
 
     //TO DO: figure out WHAT ON EARTH is going on in addEdge method.
-    addEdge: (e, p1, p2) => {
+    addEdge(e, p1, p2) {
 
     },
 
-    translate: (dx, dy) => {
+    translate(dx, dy) {
       bounds.x += dx
       bounds.y += dy
     },
 
-    getBounds: () => {
+    getBounds() {
       return {x: bounds.x, y: bounds.y, 
               width: bounds.width, height: bounds.height}
     },
 
-    getSignaled: () => {
+    getSignaled() {
       return signaled
     },
 
-    getOpenBottm: () => {
+    getOpenBottm() {
       return openBottom
     },
 
-    getType: () => {
+    getType() {
       return "NODE"
     }
 
