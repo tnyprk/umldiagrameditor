@@ -15,7 +15,10 @@ function createCallNode() {
 
   return {
 
-    draw(panel) {
+    draw(implicitParameter) {
+      if(openBottom){
+
+      }
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
       rect.setAttribute('x', bounds.x)
       rect.setAttribute('y', bounds.y)
@@ -37,6 +40,16 @@ function createCallNode() {
      */
     setImplicitParameter(newValue) {
       implicitParameter = newValue
+    },
+
+    setOpenBotton(newValue) {
+      if(typeof newValue === "boolean")
+        openBottom = newValue
+    },
+
+    setSignaled(newValue) {
+      if(typeof newValue === "boolean")
+        signaled = newValue
     },
 
     getConnectionPoint(d) {
@@ -65,13 +78,14 @@ function createCallNode() {
       return signaled
     },
 
-    getOpenBottm() {
+    isOpenBottm() {
       return openBottom
     },
 
     getType() {
       return "NODE"
     }
+
 
 
   }
