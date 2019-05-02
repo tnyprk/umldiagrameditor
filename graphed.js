@@ -156,8 +156,8 @@ function Graph() {
     getEdgePrototypes(){
         let edgeTypes = [
           createLineEdge(),
-	  createHVEdge(),
-	  createVHEdge()
+	        createHVEdge(),
+	        createVHEdge()
         ];
         return edgeTypes;
     }

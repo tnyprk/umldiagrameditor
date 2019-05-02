@@ -15,7 +15,7 @@ function createCallNode() {
 
   return {
 
-    draw(implicitParameter) {
+    draw(panel) {
       if(openBottom){
 
       }
@@ -65,8 +65,12 @@ function createCallNode() {
     },
 
     translate(dx, dy) {
-      bounds.x += dx
+      //bounds.x += dx
       bounds.y += dy
+    },
+
+    translateFromParent(dx) {
+      bounds.x += dx      
     },
 
     getBounds() {
@@ -83,10 +87,22 @@ function createCallNode() {
     },
 
     getType() {
-      return "NODE"
+    return 'NODE'
+    },
+
+    getProperties() 
+    {
+      return []
+    },
+
+    containts(p) {
+      return (bounds.x <= p.x && p.x <= bounds.x + bounds.width)
+            && (bounds.y <= p.y && p.y <= bounds.y + bounds.height)
+    },
+
+
+    clone() {
+      return createCallNode()
     }
-
-
-
   }
 }

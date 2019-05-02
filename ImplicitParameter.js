@@ -82,10 +82,11 @@ function createImplicitParameter() {
 
 
     translate(dx, dy) {
+      
       bounds.x += dx
-      bounds.y += dy
+      //bounds.y += dy
       for(const c of children) {
-        c.translate(dx, dy)
+        c.translateFromParent(dx)//dy)
 
       }
     },
@@ -99,7 +100,7 @@ function createImplicitParameter() {
 
     draw(panel) {
       //Draw the Top box of the implicit parameter
-      //const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')       
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')       
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
       let topRect = this.getTopRectangle()
       rect.setAttribute('x', topRect.x)
@@ -109,7 +110,6 @@ function createImplicitParameter() {
       rect.setAttribute('fill', 'white')
       rect.setAttribute('stroke', 'black')
       rect.setAttribute('stroke-width', '1')
-      panel.appendChild(rect)
 
       // Display the text of the implicit parameter
       // Needs better formating
@@ -118,10 +118,6 @@ function createImplicitParameter() {
       text.setAttribute('x', topRect.x)
       text.setAttribute('y', topRect.y + topRect.height / 2)
       text.setAttribute('fill', '#000')
-      //panel.appendChild(text)      
-
-    
-      rect.appendChild(text)
       
 
       //Draw the vertical line below the top box.
@@ -133,9 +129,12 @@ function createImplicitParameter() {
       line.setAttribute('stroke', 'black')
       line.setAttribute('stroke-width', '1')
       line.setAttribute('stroke-dasharray', '8 4')
-      panel.appendChild(line)
+      
 
-      panel.appendChild(rect)
+      svg.appendChild(rect)
+      svg.appendChild(text)
+      svg.appendChild(line)
+      panel.appendChild(svg)
 
     },
 
@@ -148,10 +147,6 @@ function createImplicitParameter() {
 
     getType() {
     return 'NODE'
-    },
-
-    getSize() {
-      return bounds.width
     },
 
     getProperties() {
