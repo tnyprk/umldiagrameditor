@@ -95,7 +95,7 @@ function createCallNode() {
       return []
     },
 
-    containts(p) {
+    contains(p) {
       return (bounds.x <= p.x && p.x <= bounds.x + bounds.width)
             && (bounds.y <= p.y && p.y <= bounds.y + bounds.height)
     },

@@ -84,7 +84,8 @@ function createNoteNode() {
 
     getProperties() 
     {
-      return ['Color', 'text', this.getColor, this.setColor]
+      return ['Color', 'text', this.getColor, this.setColor,
+              'noteText', 'text', this.getText, this.setText]
     },
 
     containts(p) {
@@ -105,6 +106,12 @@ function createNoteNode() {
 
     setText(t) {
       noteText = t
+    },
+
+
+    contains(p) {
+      return (bounds.x <= p.x && p.x <= bounds.x + bounds.width)
+            && (bounds.y <= p.y && p.y <= bounds.y + bounds.height)
     },
 
   }
