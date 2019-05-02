@@ -54,48 +54,56 @@ function createCallEdge() {
     //////
     // SEGMENTED LINE EDGE METHODS
     //////
-    setLineStyle() {}
-    getLineStyle() {}
+    setLineStyle() {},
+    getLineStyle() {},
     
     setStartArrowHead(newArrowHead) {
       startArrowHead = newArrowHead
-    }
+    },
     getStartArrowHead() {
       return startArrowHead
-    }
+    },
     setEndArrowHead(newArrowHead) {
       endArrowHead = newArrowHead
-    }
+    },
     getEndArrowHead() {
       return endArrowHead
-    }
+    },
     setStartLabel(text) {
       startLabel = text
-    }
+    },
     getStartLabel() {
       return startLabel
-    }
+    },
     setMiddleLabel(text) {
       startLabel = text
-    }
+    },
     getMiddleLabel() {
       return middleLabel
-    }
+    },
     setEndLabel(text) {
       startLabel = text
-    }
+    },
     getEndLabel() {
       return endLabel
-    }
-    draw() {}
-    drawString() {}
-    getAttachmentPoint() {}
-    getStringBounds() {}
-    getBounds() {}
-    getShape() {}
-    getSegmentPath() {}
-    getConnectionPoints() {}
-    getPoints() {}
+    },
+    draw() {},
+    drawString() {},
+    getAttachmentPoint() {},
+    getStringBounds() {},
+    getBounds() {},
+    getShape() {},
+    getSegmentPath() {},
+    getConnectionPoints() {},
+    getPoints() {},
+    
+    getType() {
+      return "EDGE"
+    },
+    
+    getSpecificType() {
+      return "CALLEDGE"
+    },
 
 
   }

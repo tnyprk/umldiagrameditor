@@ -114,5 +114,13 @@ function createNoteNode() {
             && (bounds.y <= p.y && p.y <= bounds.y + bounds.height)
     },
 
+    getType() {
+        return "NODE"
+    },
+
+    getSpecificType() {
+        return "NOTENODE"
+    },
+
   }
 }

@@ -118,7 +118,6 @@ function createCircleNode (size, color) {
     getType() {
       return "NODE";
     },
-    
 
     getProperties() {
       let props = ['Size',  'text', this.getSize, this.setSize, 
