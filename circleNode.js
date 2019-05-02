@@ -96,7 +96,7 @@ function createCircleNode (size, color) {
       @param d, the new diameter of this circle node
     */
     setSize(d) {
-      size = d
+      size = parseFloat(d)
     },
 
     /**

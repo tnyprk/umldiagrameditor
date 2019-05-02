@@ -105,7 +105,7 @@ function createDiamondNode (size) {
       @param the of this diamond node
     */
     setSize(s) {
-      size = s
+      size = parseFloat(s)
     },
     /**
       Creates a copy of this diamondNode
