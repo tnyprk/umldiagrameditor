@@ -1,7 +1,7 @@
 'use strict'
 function drawGrabber(x, y) {
     const size = 5;
-    const panel = document.getElementById('sequencepanel')
+    const panel = document.getElementById('graphpanel')
     const square = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
     square.setAttribute('x', x - size / 2)
     square.setAttribute('y', y - size / 2)

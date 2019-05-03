@@ -1,4 +1,16 @@
 'use strict'
+function drawSequenceGrabber(x, y) {
+    const size = 5;
+    const panel = document.getElementById('sequencepanel')
+    const square = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+    square.setAttribute('x', x - size / 2)
+    square.setAttribute('y', y - size / 2)
+    square.setAttribute('width', size)
+    square.setAttribute('height', size)
+    square.setAttribute('fill', 'black')
+    panel.appendChild(square)  
+  }
+
 
 document.addEventListener('DOMContentLoaded', function () {
     ////////////Start sequence diagram//////////////////////////
@@ -147,10 +159,10 @@ sequencePanel.innerHTML = ''
 sequencegraph.draw()
 if (selected !== undefined) {
   const bounds = selected.getBounds()
-  drawGrabber(bounds.x, bounds.y)
-  drawGrabber(bounds.x + bounds.width, bounds.y)
-  drawGrabber(bounds.x, bounds.y + bounds.height)      
-  drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
+  drawSequenceGrabber(bounds.x, bounds.y)
+  drawSequenceGrabber(bounds.x + bounds.width, bounds.y)
+  drawSequenceGrabber(bounds.x, bounds.y + bounds.height)      
+  drawSequenceGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
 }    
 }
 ////END repaint //////////////////////
