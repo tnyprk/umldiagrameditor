@@ -22,7 +22,7 @@ function createCallNode() {
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
 
       if(typeof implicitParameter !== 'undefined'){
-        rect.setAttribute('x', implicitParameter.getBounds().x + implicitParameter.getBounds().width / 2)
+        rect.setAttribute('x', implicitParameter.getBounds().x + implicitParameter.getBounds().width / 2 - bounds.width / 2)
       } else {
         rect.setAttribute('x', bounds.x)
       }
