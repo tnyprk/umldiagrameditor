@@ -20,7 +20,13 @@ function createCallNode() {
 
       }
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
-      rect.setAttribute('x', bounds.x)
+
+      if(typeof implicitParameter !== 'undefined'){
+        rect.setAttribute('x', implicitParameter.getBounds().x + implicitParameter.getBounds().width / 2)
+      } else {
+        rect.setAttribute('x', bounds.x)
+      }
+
       rect.setAttribute('y', bounds.y)
       rect.setAttribute('width', bounds.width)
       rect.setAttribute('height', bounds.height)
@@ -28,6 +34,7 @@ function createCallNode() {
       rect.setAttribute('stroke', 'black')
       rect.setAttribute('stroke-width', '1')
       panel.appendChild(rect)
+
     },
 
     getImplicitParameter() {
@@ -92,6 +99,11 @@ function createCallNode() {
 
     getSpecificType() {
       return 'CALLNODE'
+    },
+
+    //temporary
+    getImplicitParameter() {
+      return implicitParameter
     },
   
 
