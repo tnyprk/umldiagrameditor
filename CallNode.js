@@ -90,6 +90,11 @@ function createCallNode() {
     return 'NODE'
     },
 
+    getSpecificType() {
+      return 'CALLNODE'
+    },
+  
+
     getProperties() 
     {
       return []

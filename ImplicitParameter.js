@@ -171,9 +171,9 @@ function createImplicitParameter() {
       return 'NODE'
       },
   
-      getSpecificType() {
-        return 'IMPLICITPARAMETERNODE'
-      },
+    getSpecificType() {
+      return 'IMPLICITPARAMETERNODE'
+    },
   
 
     getProperties() {
