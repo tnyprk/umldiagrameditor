@@ -138,6 +138,13 @@ function createImplicitParameter() {
 
     },
 
+    /**
+      Primitive equals fuction, checks for match in name and location.
+    */
+    equals(other) {
+      return (name === other.getName && bounds.x === other.getBounds().x)
+    },
+
     getParent() {
       return parent
     },
@@ -165,20 +172,21 @@ function createImplicitParameter() {
         }
       }
       node.setParent
-    },
-
+     },
+ 
     getType() {
       return 'NODE'
       },
   
-    getSpecificType() {
-      return 'IMPLICITPARAMETERNODE'
-    },
+      getSpecificType() {
+        return 'IMPLICITPARAMETERNODE'
+      },
   
+
 
     getProperties() {
       return ['Name', 'text', this.getName, this.setName]
-    }
+    },
 
 
 
