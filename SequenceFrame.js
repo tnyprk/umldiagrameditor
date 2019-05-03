@@ -41,10 +41,11 @@ sequencePanel.addEventListener('mousedown',event=>{
         if(selectedTool.getType() === "NODE"){
             console.log("NODE " + selectedTool.getType())
             const item = selectedTool.clone()
+            let mousePoint = mouseLocation(event)
             var rect = sequencePanel.getBoundingClientRect();
             //let size = item.getSize()
             item.translate(event.clientX - rect.left ,event.clientY - rect.top)
-            sequencegraph.add(item)
+            sequencegraph.add(item, mousePoint)
             repaint()
     }
     if(selectedTool.getType() === "EDGE"){

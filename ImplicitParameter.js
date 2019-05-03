@@ -8,6 +8,7 @@ function createImplicitParameter() {
   let DEFAULT_HEIGHT = 120
   let topHeight = DEFAULT_TOP_HEIGHT
   let bounds = { x: 0, y: 0, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT }
+  let specificType = 'IMPLICITPARAMETERNODE'
 
 
   let children = []
@@ -138,13 +139,6 @@ function createImplicitParameter() {
 
     },
 
-    /**
-      Primitive equals fuction, checks for match in name and location.
-    */
-    equals(other) {
-      return (name === other.getName && bounds.x === other.getBounds().x)
-    },
-
     getParent() {
       return parent
     },
@@ -172,21 +166,20 @@ function createImplicitParameter() {
         }
       }
       node.setParent
-     },
- 
+    },
+
     getType() {
       return 'NODE'
-    },
-  
-      getSpecificType() {
-        return 'IMPLICITPARAMETERNODE'
       },
   
-
+    getSpecificType() {
+      return 'IMPLICITPARAMETERNODE'
+    },
+  
 
     getProperties() {
       return ['Name', 'text', this.getName, this.setName]
-    },
+    }
 
 
 

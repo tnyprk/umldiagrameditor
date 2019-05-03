@@ -28,11 +28,11 @@ function sequenceGraph() {
       if(node.getSpecificType() === 'CALLNODE')
       {
         let inside = false
-        let n = undefined
 
-        for(n in nodes)
+        for(let i = nodes.length - 1; i >= 0; i--)
         {
-          if(n.getSpecificType === 'IMPLICITPARAMETERNODE' && n.contains(p))
+          const n = nodes[i];
+          if(n.getSpecificType() === 'IMPLICITPARAMETERNODE' && n.contains(p))
           {
             inside = true
             node.setImplicitParameter(n)
