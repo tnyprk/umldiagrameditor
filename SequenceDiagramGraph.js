@@ -32,7 +32,7 @@ function sequenceGraph() {
 
         for(n in nodes)
         {
-          if(n.getSpecificType() === 'IMPLICITPARAMETERNODE' && n.contains(p))
+          if(n.getSpecificType === 'IMPLICITPARAMETERNODE' && n.contains(p))
           {
             inside = true
             node.setImplicitParameter(n)

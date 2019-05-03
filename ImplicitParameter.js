@@ -31,7 +31,7 @@ function createImplicitParameter() {
       @return the top rectangle
    */
     getTopRectangle() {
-      return {x: bounds.x, y: bounds.y, 
+      return {x: bounds.x, y: bounds.y,
              width: bounds.width, height: topHeight}
     },
 
@@ -176,7 +176,7 @@ function createImplicitParameter() {
  
     getType() {
       return 'NODE'
-      },
+    },
   
       getSpecificType() {
         return 'IMPLICITPARAMETERNODE'
