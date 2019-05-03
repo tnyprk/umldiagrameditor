@@ -138,6 +138,17 @@ function createImplicitParameter() {
 
     },
 
+    getParent() {
+      return parent
+    },
+
+    setParent(node) {
+      parent = node
+    },
+
+    getChildren() {
+      return children
+    },
 
     addChild(c) {
       children.push(c)
@@ -145,9 +156,25 @@ function createImplicitParameter() {
       c.translate(mid - c.getBounds().width / 2, getTopRect().y + getTopRect().height + 20)
     },
 
-    getType() {
-    return 'NODE'
+    removeChild(node)
+    {
+      for(i = 0; i < children.length; i++){
+        if(children[i] == node)
+        {
+          children.splice(i, 1)
+        }
+      }
+      node.setParent
     },
+
+    getType() {
+      return 'NODE'
+      },
+  
+      getSpecificType() {
+        return 'IMPLICITPARAMETERNODE'
+      },
+  
 
     getProperties() {
       return ['Name', 'text', this.getName, this.setName]

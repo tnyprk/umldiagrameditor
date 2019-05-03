@@ -92,6 +92,15 @@ function createCallEdge() {
     getSegmentPath() {},
     getConnectionPoints() {},
     getPoints() {},
+
+    getStart() {
+      return start
+    },
+    
+    getEnd() {
+      return end
+    },
+
     
     getType() {
       return "EDGE"

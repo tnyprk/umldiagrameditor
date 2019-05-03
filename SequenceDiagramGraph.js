@@ -17,34 +17,51 @@ function sequenceGraph() {
   let edges = [];
   return {
     /**
-      Adds an edge to the graph that joins the nodes containing
-      the given points. If the points aren't both inside nodes,
-      then no edge is added.
-      @param {Edge} edge the edge to add
-      @param {Point} point1 a point in the starting node
-      @param {Point} point2 a point in the ending node
-   */
-    connect (point1, point2,edge) {
-      let n1 = this.findNode(point1);
-      let n2 = this.findNode(point2);
-      if (n1 !== null && n2 !== null) {
-        console.log(n1.getBounds().x)
-        console.log(n2.getBounds().x)
-        edge.connect(n1, n2);
-        edges.push(edge);
-        return true;
-      }
-      return false;
-    },
-    /**
-      Adds a node to the graph so that the top left corner of
-      the bounding rectangle is at the given point.
-      @param {Node} node the node to add
-      @param {Point} point the desired location
+     * if the node being added is a callnode, then it sets the callnode's 
+     * implicitparameter to the correct implicit parameter node.
+     * else, adds the node to the array or nodes
+     * @param n the node to add
+     * @param p the desired location
     */
-    add(node){
-        nodes.push(node);
+    add(node, p)
+    {
+      if(node.getSpecifcType() === "CALLNODE")
+      {
+        let curretNodes = getNodes()
+        let inside = false
+
+        for(n in currentNodes)
+        {
+          if(n.getSpecifcType === "IMPLICITPARAMETERNODE" && n.contains(p))
+          {
+            inside = true
+            node.setImplicitParameter(n)
+            break
+          }
+        }
+        if(!inside) return
+      }
+      nodes.push(node);
     },
+
+    /**
+        Removes an edge from the graph.
+        @param {Edge} e the edge to remove
+    */
+    removeEdge(e) {
+      for (let i = 0; i < edges.length; i++) {
+        if (edges[i] === e) {
+          edges.splice(i, 1);
+        }
+      }
+
+      if (e.getSpecificType === "CALLEDGE" && e.getEnd().getChildren().length == 0)
+      {
+        removeNode(e.getEnd)
+      }
+
+    },
+    
     /**
       Finds a node containing the given point.
       @param {Point} point a point
@@ -101,17 +118,7 @@ function sequenceGraph() {
         }
       }
     },
-    /**
-      Removes an edge from the graph.
-      @param {Edge} e the edge to remove
-   */
-    removeEdge(e) {
-      for (let i = 0; i < edges.length; i++) {
-        if (edges[i] === e) {
-          edges.splice(i, 1);
-        }
-      }
-    },
+
     /**
       Gets the smallest rectangle enclosing the graph
       @return the bounding rectangle
@@ -129,6 +136,28 @@ function sequenceGraph() {
         ? document.createElementNS("http://www.w3.org/2000/svg", "rect")
         : r;
     },
+    
+    /**
+      Adds an edge to the graph that joins the nodes containing
+      the given points. If the points aren't both inside nodes,
+      then no edge is added.
+      @param {Edge} edge the edge to add
+      @param {Point} point1 a point in the starting node
+      @param {Point} point2 a point in the ending node
+   */
+    connect (point1, point2,edge) {
+      let n1 = this.findNode(point1);
+      let n2 = this.findNode(point2);
+      if (n1 !== null && n2 !== null) {
+        console.log(n1.getBounds().x)
+        console.log(n2.getBounds().x)
+        edge.connect(n1, n2);
+        edges.push(edge);
+        return true;
+      }
+      return false;
+    },
+
     /**
       Gets the nodes of this graph.
       @return an unmodifiable list of the nodes
@@ -140,9 +169,11 @@ function sequenceGraph() {
       Gets the edges of this graph.
       @return an unmodifiable list of the edges
    */
+  
     getEdges(){
       return edges;
     },
+
     /// not working to get right x and y
     getNodePrototypes(){
       let nodeTypes = [
@@ -162,7 +193,3 @@ function sequenceGraph() {
     }
   };
 }
-
-
-
-
