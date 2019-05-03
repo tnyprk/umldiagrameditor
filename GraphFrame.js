@@ -1,7 +1,7 @@
 'use strict'
 function drawGrabber(x, y) {
     const size = 5;
-    const panel = document.getElementById('graphpanel')
+    const panel = document.getElementById('sequencepanel')
     const square = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
     square.setAttribute('x', x - size / 2)
     square.setAttribute('y', y - size / 2)
@@ -12,6 +12,8 @@ function drawGrabber(x, y) {
   }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+  ////////Graph Editor
     const graph = Graph()
     const panel = document.getElementById('graphpanel')
     const toolbar = document.getElementById('toolbar');
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // const n2 = createCircleNode(50, 50, 20, 'blue')
     // graph.add(n1)
     // graph.add(n2)
-    const toolBar = ToolBar(graph)
+    const toolBar = ToolBar(graph,toolbar)
     const nodes = graph.getNodePrototypes()
     for (let i = 0; i < nodes.length;i++){
         toolBar.addNode(toolbar,nodes[i])
@@ -166,9 +168,8 @@ function mouseLocation(event) {
       drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
     }    
   }
-////
-
-
+////END repaint //////////////////////
+//////////////END Graph Editor/////////////////////
 
     //const propertySheet = PropertySheet(graph)
 

@@ -1,9 +1,9 @@
 'use strict'
 
-function ToolBar(graph){
+function ToolBar(graph,toolbar){
     const BUTTON_SIZE = 40;
     const panel = document.getElementById("graphpanel");
-    const toolbar = document.getElementById('toolbar');
+    // const toolbar = document.getElementById('toolbar');
     let selectedTool = undefined
     let selectedIcon
     let offSet = 4;
@@ -63,46 +63,6 @@ function ToolBar(graph){
     function setSelected(tool){
         selectedTool = tool
     }
-
-    // function addButton(toolbar,image){
-
-    //     function turnOn(){
-    //         if(rect.getAttribute('fill') === 'white'){
-    //             if(selectedIcon !== undefined){
-    //                 selectedIcon.childNodes[0].setAttribute('fill','white')
-    //             }
-    //             rect.setAttribute('fill','red')
-    //             selectedIcon = icon
-    //             selectedTool = image
-    //         }else{
-    //             rect.setAttribute('fill','white')
-    //             selectedIcon = undefined;
-    //             selectedTool = undefined
-    //         }
-    //     }
-    //     offSet++;
-    // }
-
-    // function handleEvent(event){
-    //     if(selectedTool !== undefined){
-    //         if(selectedTool.getType() === "NODE"){
-    //             const item = selectedTool.clone()
-    //             var rect = panel.getBoundingClientRect();
-    //             let size = item.getSize()
-    //             item.translate( event.clientX - rect.left - size/2 ,event.clientY - rect.top - size/2)
-    //             graph.add(item)
-    //             graph.draw()
-    //         }
-    //         if(selectedTool.getType()==="EDGE"){
-
-    //         }
-    //     }
-    // }
-
-    // panel.addEventListener('click',handleEvent,true)
-    // addButton(toolbar,selecter(icon))
-
-
 }
 
 

@@ -148,8 +148,7 @@ function Graph() {
       let nodeTypes = [
             createCircleNode( 60, 'black'),
             createCircleNode( 25, 'yellow'),
-            createDiamondNode(60),
-            createImplicitParameter()
+            createDiamondNode(60)
         ]
         return nodeTypes;
     },

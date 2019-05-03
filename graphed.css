@@ -3,6 +3,11 @@
     width: 1000px;
     height: 800px;
 }
+#sequencepanel {
+  border: solid black thin;
+  width: 1000px;
+  height: 800px;
+}
 /*#propertysheet {
     border: solid black thin;
     width: 1000px;

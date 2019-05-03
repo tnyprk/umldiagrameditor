@@ -1,9 +1,5 @@
 'use strict'
 
-
-
-
-
 function createCallEdge() {
   let start
   let end

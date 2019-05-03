@@ -12,7 +12,7 @@ function drawGrabber(x, y)  {
   panel.appendChild(square);
 }
 
-function Graph() {
+function sequenceGraph() {
   let nodes = [];
   let edges = [];
   return {
@@ -73,7 +73,7 @@ function Graph() {
       Draws the graph
    */
     draw() {
-      const panel = document.getElementById("graphpanel");
+      const panel = document.getElementById("sequencepanel");
       for (const n of nodes) {
         n.draw(panel);
       }
@@ -154,9 +154,9 @@ function Graph() {
     },
     getEdgePrototypes(){
         let edgeTypes = [
-          //createCallEdge(),
-          //createReturnEdge(),
-          //createNoteEdge()
+          createCallEdge(),
+          createReturnEdge(),
+         // createNoteEdge()
         ];
         return edgeTypes;
     }

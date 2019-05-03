@@ -2,10 +2,14 @@
 
 
 function createReturnEdge() {
-
+    let start
+    let end
 
     return {
-
+        connect(s, e) {
+            start = s
+            end = e
+          },
         getType() {
             return "EDGE"
         },
@@ -13,6 +17,7 @@ function createReturnEdge() {
         getSpecificType() {
             return "RETURNEDGE"
         },
+        draw(){}
 
     }
 }
