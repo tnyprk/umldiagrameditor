@@ -62,9 +62,9 @@ function createCallNode() {
 
     getConnectionPoint(d) {
       if (d > 0) 
-        return {x: bounds.x + bounds.width/2, y: bounds.y}
+        return {x: bounds.x + bounds.width, y: bounds.y}
       else 
-        return {x: bounds.x - bounds.width/2, y: bounds.y }
+        return {x: bounds.x, y: bounds.y }
     },
 
     //TO DO: figure out WHAT ON EARTH is going on in addEdge method.
@@ -82,7 +82,7 @@ function createCallNode() {
     },
 
     getBounds() {
-      return {x: bounds.x - bounds.width/2, y: bounds.y, 
+      return {x: bounds.x, y: bounds.y, 
               width: bounds.width, height: bounds.height}
     },
 

@@ -126,6 +126,11 @@ document.addEventListener("DOMContentLoaded", function() {
     alert(event.keyCode);
 } );
 
+panel.addEventListener("repaint",event=>{
+  repaint()
+})
+
+
   ///repaint functions
   function mouseLocation(event) {
     var rect = sequencePanel.getBoundingClientRect();
