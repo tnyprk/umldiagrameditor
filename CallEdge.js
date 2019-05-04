@@ -56,7 +56,7 @@ function createCallEdge() {
 
 
       if(end.getSpecificType() === 'CALLNODE' &&
-          start.getImplicitParameter().equals(end.getImplicitParameter()) ) {
+          start.getImplicitParameter() === end.getImplicitParameter() ) {
 
         let p1 = { x: s.x + s.width,  y: e.y - end.getCallYGap() / 2 }
         let p2 = { x: e.x + e.width,  y: e.y }

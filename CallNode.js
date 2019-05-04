@@ -101,13 +101,7 @@ function createCallNode() {
 
     getSpecificType() {
       return 'CALLNODE'
-    },
-
-    //temporary
-    getImplicitParameter() {
-      return implicitParameter
-    },
-  
+    },  
 
     getProperties() 
     {
