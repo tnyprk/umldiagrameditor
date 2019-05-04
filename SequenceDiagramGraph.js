@@ -83,10 +83,10 @@ function sequenceGraph() {
    */
     draw() {
       const panel = document.getElementById("sequencepanel");
-      // for (const n of nodes) {
-      //   if(n.getSpecificType() === "CALLNODE")
-      //     n.draw(panel);
-      // }
+      for (const n of nodes) {
+        if(n.getSpecificType() === "CALLNODE")
+          n.draw(panel);
+      }
       for (const n of nodes) {
         if(n.getSpecificType() === "IMPLICITPARAMETERNODE")
           n.draw(panel);
@@ -112,6 +112,12 @@ function sequenceGraph() {
       for (let i = 0; i < nodes.length; i++) {
         if (nodes[i] === node) {
           nodes.splice(i, 1);
+          if(node.getSpecificType()==="IMPLICITPARAMETERNODE"){
+            let children = node.getChildren();
+            nodes = nodes.filter(x => {
+              return children.indexOf( x ) < 0;
+            })
+          }
         }
       }
     },

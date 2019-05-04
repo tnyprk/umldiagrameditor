@@ -131,12 +131,6 @@ function createImplicitParameter() {
       line.setAttribute('stroke', 'black')
       line.setAttribute('stroke-width', '1')
       line.setAttribute('stroke-dasharray', '8 4')
-      
-      if(children.length > 0){
-        for(let i = 0; i< children.length;i++){
-          children[i].draw(panel)
-        }
-      }
 
       svg.appendChild(rect)
       svg.appendChild(text)
