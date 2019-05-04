@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       let mousePoint = mouseLocation(event);
       selected = sequencegraph.findNode(mousePoint);
+      if( selected === undefined)
+        selected = sequencegraph.findEdge(mousePoint)
       PropertySheet(selected);
       if (selected !== undefined) {
         dragStartPoint = mousePoint;
@@ -82,15 +84,17 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       if (dragStartPoint === undefined) return;
       let mousePoint = mouseLocation(event);
+      if(selected.getType() === 'NODE')
+      {
+        if (selected !== undefined) {
+          const bounds = selected.getBounds();
 
-      if (selected !== undefined) {
-        const bounds = selected.getBounds();
-
-        selected.translate(
-          dragStartBounds.x - bounds.x + mousePoint.x - dragStartPoint.x,
-          dragStartBounds.y - bounds.y + mousePoint.y - dragStartPoint.y
-        );
-        repaint();
+          selected.translate(
+            dragStartBounds.x - bounds.x + mousePoint.x - dragStartPoint.x,
+            dragStartBounds.y - bounds.y + mousePoint.y - dragStartPoint.y
+          );
+          repaint();
+        }
       }
     }
   });
