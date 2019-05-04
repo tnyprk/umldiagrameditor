@@ -154,7 +154,8 @@ function createImplicitParameter() {
     addChild(c) {
       children.push(c)
       let mid = bounds.x + bounds.width / 2
-      c.translate(mid - c.getBounds().width / 2, getTopRect().y + getTopRect().height + 20)
+      console.log(mid)
+      c.translateFromParent(mid)
     },
 
     removeChild(node)

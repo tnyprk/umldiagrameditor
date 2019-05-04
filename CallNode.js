@@ -19,6 +19,7 @@ function createCallNode() {
       if(openBottom){
 
       }
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg') 
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
 
       if(typeof implicitParameter !== 'undefined'){
@@ -33,7 +34,8 @@ function createCallNode() {
       rect.setAttribute('fill', 'white')
       rect.setAttribute('stroke', 'black')
       rect.setAttribute('stroke-width', '1')
-      panel.appendChild(rect)
+      svg.appendChild(rect)
+      panel.appendChild(svg)
 
     },
 

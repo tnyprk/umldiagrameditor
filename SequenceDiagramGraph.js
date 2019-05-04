@@ -1,17 +1,5 @@
 "use strict";
 
-function drawGrabber(x, y)  {
-  const size = 5;
-  const panel = document.getElementById("graphpanel");
-  const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  square.setAttribute("x", x - size / 2);
-  square.setAttribute("y", y - size / 2);
-  square.setAttribute("width", size);
-  square.setAttribute("height", size);
-  square.setAttribute("fill", "black");
-  panel.appendChild(square);
-}
-
 function sequenceGraph() {
   let nodes = [];
   let edges = [];
@@ -36,6 +24,7 @@ function sequenceGraph() {
           {
             inside = true
             node.setImplicitParameter(n)
+            n.addChild(node)
             break
           }
         }
@@ -70,7 +59,9 @@ function sequenceGraph() {
     findNode (point){
       for (let i = nodes.length - 1; i >= 0; i--) {
          const n = nodes[i];
-        if (n.contains(point)) return n;
+         console.log(n.getSpecificType())
+        if (n.contains(point)) {
+          return n;}
       }
       return undefined;
     },
@@ -92,7 +83,12 @@ function sequenceGraph() {
     draw() {
       const panel = document.getElementById("sequencepanel");
       for (const n of nodes) {
-        n.draw(panel);
+        if(n.getSpecificType() === "CALLNODE")
+          n.draw(panel);
+      }
+      for (const n of nodes) {
+        if(n.getSpecificType() === "IMPLICITPARAMETERNODE")
+          n.draw(panel);
       }
       for (const e of edges) {
         e.draw(panel);

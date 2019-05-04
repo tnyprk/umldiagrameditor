@@ -17,7 +17,7 @@ function ToolBar(graph,toolbar){
     s.draw(svg)
      button.appendChild(svg)
      button.addEventListener("click",function(){
-        setSelected(undefined)
+    setSelected(undefined)
  })
      toolbar.appendChild(button)
 
