@@ -46,11 +46,11 @@ function createImplicitParameter() {
       @param d 
     */
     getConnectionPoint(d) {
-      if(d.x > 0)
+      if(d > 0)
         return {x: bounds.x + bounds.width, 
                 y: bounds.y + topHeight / 2}
       else
-        return {x: bounds.x + bounds.width, 
+        return {x: bounds.x, 
                 y: bounds.y + topHeight / 2}
     },
 

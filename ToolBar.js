@@ -12,7 +12,9 @@ function ToolBar(graph,toolbar){
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
     svg.setAttribute("width",BUTTON_SIZE)
     svg.setAttribute("height",BUTTON_SIZE)
-     selecter().draw(svg)
+    let s = selecter()
+    s.translate(5, 5)   // To fix offset issue with grabbers in toolbar.
+    s.draw(svg)
      button.appendChild(svg)
      button.addEventListener("click",function(){
         setSelected(undefined)

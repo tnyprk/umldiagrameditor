@@ -9,7 +9,7 @@ function createCallEdge() {
 
   let lineStyle = 'solid'  // or 'dashed'
   let startArrowHead = undefined
-  let endArrowHead = 'V'
+  let endArrowHead = createArrowHead('V')
   let startLabel = undefined
   let middleLabel = undefined
   let endLabel = undefined
@@ -71,8 +71,8 @@ function createCallEdge() {
         let direction = s.x - e.x
 
         let endPoint = end.getConnectionPoint(direction)
-
-        if(s.x + s.width / 2 < endPoint.x)
+        endArrowHead.setPoints(endPoint, direction)
+        if(s.x + (s.width / 2) < endPoint.x)
           points.push( { x: s.x + s.width, y: endPoint.y } )
         else
           points.push( { x: s.x, y: endPoint.y } )
@@ -169,6 +169,7 @@ function createCallEdge() {
         edge3.setAttribute('stroke-width', 2)
         panel.appendChild(edge)
       }
+      endArrowHead.draw(panel)
     },
 
 
