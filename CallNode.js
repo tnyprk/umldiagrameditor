@@ -5,7 +5,6 @@ function createCallNode() {
   let DEFAULT_WIDTH = 16;
   let DEFAULT_HEIGHT = 30;
   let CALL_YGAP = 20;
-
   let bounds = {x: 0, y: 0, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT}
 
   let implicitParameter = undefined
@@ -62,10 +61,10 @@ function createCallNode() {
     },
 
     getConnectionPoint(d) {
-      if (d.x > 0) 
-        return {x: bounds.x + bounds.width, y: bounds.y}
+      if (d > 0) 
+        return {x: bounds.x + bounds.width/2, y: bounds.y}
       else 
-        return {x: bounds.x, y: bounds.y }
+        return {x: bounds.x - bounds.width/2, y: bounds.y }
     },
 
     //TO DO: figure out WHAT ON EARTH is going on in addEdge method.

@@ -23,7 +23,8 @@ function createImplicitParameter() {
       @returns true if the point is between the min and max x values, else false.
     */
     contains(p) {
-      return p.x >= bounds.x && p.x <= bounds.x + bounds.width
+      return ((bounds.x <= p.x && p.x <= bounds.x + bounds.width)
+      && (bounds.y <= p.y && p.y <= bounds.y + bounds.height))
     },
 
 

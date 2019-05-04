@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
         repaint();
       }
       if (selectedTool.getType() === "EDGE") {
-        console.log("EDGE click");
         let mousePoint = mouseLocation(event);
         selected = sequencegraph.findNode(mousePoint);
         console.log(selected.getType());
@@ -59,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       let mousePoint = mouseLocation(event);
       selected = sequencegraph.findNode(mousePoint);
-      console.log(selected);
       PropertySheet(selected);
       if (selected !== undefined) {
         dragStartPoint = mousePoint;
@@ -105,18 +103,16 @@ document.addEventListener("DOMContentLoaded", function() {
       if (selectedTool.getType() === "EDGE") {
         let edge = selectedTool.clone();
         let mousePoint = mouseLocation(event);
-        console.log("EDGE up");
         let connectedNode = sequencegraph.findNode(mousePoint);
         if (connectedNode) {
-          console.log("here");
           if (sequencegraph.connect(dragStartPoint, mousePoint, edge)) {
             dragStartPoint = undefined;
-            repaintEdge();
+            repaint();
             edge = undefined;
           } else {
             dragStartPoint = undefined;
             edge = undefined;
-            repaintEdge();
+            repaint();
           }
         }
       }
@@ -126,7 +122,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  ///repaintEdge functions
+  sequencePanel.addEventListener('keydown', function(event){
+    alert(event.keyCode);
+} );
+
+  ///repaint functions
   function mouseLocation(event) {
     var rect = sequencePanel.getBoundingClientRect();
     return {
@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", function() {
     };
   }
 
-  function repaintEdge() {
-    sequencePanel.innerHTML = "";
-    sequencegraph.draw();
-  }
+  // function repaint() {
+  //   sequencePanel.innerHTML = "";
+  //   sequencegraph.draw();
+  // }
 
   function paintEdge(dragStartPoint, mousePoint) {
     sequencePanel.innerHTML = "";

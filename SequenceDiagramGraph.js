@@ -25,12 +25,13 @@ function sequenceGraph() {
             inside = true
             node.setImplicitParameter(n)
             n.addChild(node)
-            break
+            nodes.push(node)
+            return
           }
         }
         if(!inside) return
       }
-      nodes.push(node);
+      nodes.unshift(node);
     },
 
     /**
@@ -59,8 +60,8 @@ function sequenceGraph() {
     findNode (point){
       for (let i = nodes.length - 1; i >= 0; i--) {
          const n = nodes[i];
-         console.log(n.getSpecificType())
         if (n.contains(point)) {
+          console.log(n.getSpecificType())
           return n;}
       }
       return undefined;
@@ -145,8 +146,6 @@ function sequenceGraph() {
       let n1 = this.findNode(point1);
       let n2 = this.findNode(point2);
       if (n1 !== null && n2 !== null) {
-        console.log(n1.getBounds().x)
-        console.log(n2.getBounds().x)
         edge.connect(n1, n2);
         edges.push(edge);
         return true;

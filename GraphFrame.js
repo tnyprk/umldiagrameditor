@@ -115,12 +115,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log("here")
                     if(graph.connect(dragStartPoint,mousePoint,edge)){
                         dragStartPoint = undefined
-                        repaintEdge()
+                        repaint()
                         edge = undefined
                     }else{
                         dragStartPoint = undefined
                         edge = undefined
-                        repaintEdge()
+                        repaint()
                     }
             }
         }
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
 
-///repaintEdge functions 
+///repaint functions 
 function mouseLocation(event) {
     var rect = panel.getBoundingClientRect();
     return {
@@ -140,10 +140,10 @@ function mouseLocation(event) {
     }
   }
   
-  function repaintEdge(){
-    panel.innerHTML = ''
-    graph.draw()
-  }
+  // function repaint(){
+  //   panel.innerHTML = ''
+  //   graph.draw()
+  // }
 
   function paintEdge(dragStartPoint,mousePoint){
     panel.innerHTML = ''

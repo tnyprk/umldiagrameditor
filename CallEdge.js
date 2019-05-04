@@ -57,9 +57,10 @@ function createCallEdge() {
 
       if(end.getSpecificType() === 'CALLNODE' &&
           start.getImplicitParameter() === end.getImplicitParameter() ) {
-
+            console.log("start: " + start.getBounds())
+            console.log("end: " + end.getBounds())
         let p1 = { x: s.x + s.width,  y: e.y - end.getCallYGap() / 2 }
-        let p2 = { x: e.x + e.width,  y: e.y }
+        let p2 = { x: e.x - e.width,  y: e.y }
         let p3 = { x: p1.x + e.width, y: p1.y }
         let p4 = { x: p3.x,           y: p1.y }
         points.push(p1)
@@ -69,7 +70,7 @@ function createCallEdge() {
       }
       else {
         let direction = s.x - e.x
-
+        console.log(direction)
         let endPoint = end.getConnectionPoint(direction)
         endArrowHead.setPoints(endPoint, direction)
         if(s.x + (s.width / 2) < endPoint.x)
@@ -167,7 +168,7 @@ function createCallEdge() {
         edge3.setAttribute('y2', points[0].y)
         edge3.setAttribute('stroke', 'black')
         edge3.setAttribute('stroke-width', 2)
-        panel.appendChild(edge)
+        panel.appendChild(edge3)
       }
       endArrowHead.draw(panel)
     },
