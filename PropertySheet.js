@@ -1,6 +1,6 @@
 'use strict'
 
-function PropertySheet(object) {
+function PropertySheet(object, graph) {
     //Build array of properties
 	//var test = createCircleNode (5, 'red')
 	var properties = [];
@@ -85,6 +85,7 @@ function PropertySheet(object) {
 			//properties[i+3](editor.value)
 			propertyEditor(object);
 			//alert('text')
+			document.getElementById('graphpanel').dispatchEvent(new CustomEvent("repaint"));
 		} 
 		propertySheet.appendChild(accept); 
 	}

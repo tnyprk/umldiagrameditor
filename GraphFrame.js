@@ -129,6 +129,10 @@ document.addEventListener('DOMContentLoaded', function () {
             dragStartBounds = undefined
         }
     })
+	
+	panel.addEventListener("repaint",event=>{
+		repaint()
+	})
 
 
 ///repaint functions 
