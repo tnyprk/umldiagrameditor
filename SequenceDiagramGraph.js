@@ -72,8 +72,8 @@ function sequenceGraph() {
       @return an edge containing p or null if no edges contain p
    */
     findEdge(point) {
-      for (let i = edges.size() - 1; i >= 0; i--) {
-        const e = edges.get(i);
+      for (let i = edges.length - 1; i >= 0; i--) {
+        const e = edges[i];
         if (e.contains(point)) return e;
       }
       return undefined;

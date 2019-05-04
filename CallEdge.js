@@ -37,12 +37,20 @@ function createCallEdge() {
 
     getBounds() {
       let points = this.getPoints()
+      let offset = 8
       if(points.length === 2) {
           let p1 = points[0]
           let p2 = points[1]
-          return { x: p1.x, y: p1.y, width: Math.abs(p2.x - p1.x), height: 8} 
+          return { x: p1.x, y: p1.y - offset / 2, width: Math.abs(p2.x - p1.x), height: offset} 
         }
     },
+
+    contains(p) {
+      let tmp = this.getBounds()
+      return ( tmp.x <= p.x && p.x <= tmp.x + tmp.width) &&
+              ( tmp.y <= p.y && p.y <= tmp.y + tmp.height ) 
+    },
+
 
     getConnectionPoints() {
       let points = this.getPoints()
@@ -59,7 +67,7 @@ function createCallEdge() {
           start.getImplicitParameter() === end.getImplicitParameter() ) {
             console.log("start: " + start.getBounds())
             console.log("end: " + end.getBounds())
-        let p1 = { x: s.x + s.width,  y: e.y - end.getCallYGap() / 2 }
+        let p1 = { x: s.x + s.width,  y: e.y - 10 }
         let p2 = { x: e.x - e.width,  y: e.y }
         let p3 = { x: p1.x + e.width, y: p1.y }
         let p4 = { x: p3.x,           y: p1.y }
@@ -151,7 +159,7 @@ function createCallEdge() {
       edge.setAttribute('stroke', 'black')
       edge.setAttribute('stroke-width', 2)
       panel.appendChild(edge)
-      if(points.lenght === 4) {
+      if(points.length === 4) {
         const edge2 = document.createElementNS('http://www.w3.org/2000/svg', 'line')
         edge2.setAttribute('x1', points[0].x)
         edge2.setAttribute('y1', points[0].y)
@@ -191,6 +199,12 @@ function createCallEdge() {
     getSpecificType() {
       return "CALLEDGE"
     },
+
+    getProperties() {
+      return []
+    }
+    
+
 
   }
 
