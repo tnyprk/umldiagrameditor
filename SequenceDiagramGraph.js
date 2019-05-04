@@ -83,10 +83,10 @@ function sequenceGraph() {
    */
     draw() {
       const panel = document.getElementById("sequencepanel");
-      for (const n of nodes) {
-        if(n.getSpecificType() === "CALLNODE")
-          n.draw(panel);
-      }
+      // for (const n of nodes) {
+      //   if(n.getSpecificType() === "CALLNODE")
+      //     n.draw(panel);
+      // }
       for (const n of nodes) {
         if(n.getSpecificType() === "IMPLICITPARAMETERNODE")
           n.draw(panel);

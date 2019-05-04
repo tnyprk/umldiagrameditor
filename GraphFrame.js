@@ -129,7 +129,23 @@ document.addEventListener('DOMContentLoaded', function () {
             dragStartBounds = undefined
         }
     })
-	
+
+  /////DELETE
+    document.addEventListener('keydown', (event) => {
+      if(selected !== undefined){
+        if(event.key === 'Delete'){
+          if(selected.getType() === 'NODE'){
+            graph.removeNode(selected)
+          }
+          if(selected.getType() === 'EDGE'){
+            graph.removeEdge(selected)
+          }
+        }
+        repaint()
+      }
+    },false)
+/////////END DELETE
+
 	panel.addEventListener("repaint",event=>{
 		repaint()
 	})

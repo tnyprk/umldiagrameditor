@@ -122,11 +122,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  sequencePanel.addEventListener('keydown', function(event){
-    alert(event.keyCode);
-} );
+  /////DELETE
+  document.addEventListener('keydown', (event) => {
+    if(selected !== undefined){
+      if(event.key === 'Delete'){
+        if(selected.getType() === 'NODE'){
+          sequencegraph.removeNode(selected)
+        }
+        if(selected.getType() === 'EDGE'){
+          sequencegraph.removeEdge(selected)
+        }
+      }
+      repaint()
+    }
+  },false)
+/////////END DELETE
 
-panel.addEventListener("repaint",event=>{
+sequencePanel.addEventListener("repaint",event=>{
   repaint()
 })
 
