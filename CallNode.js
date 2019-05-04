@@ -83,7 +83,7 @@ function createCallNode() {
     },
 
     getBounds() {
-      return {x: bounds.x, y: bounds.y, 
+      return {x: bounds.x - bounds.width/2, y: bounds.y, 
               width: bounds.width, height: bounds.height}
     },
 
