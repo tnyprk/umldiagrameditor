@@ -108,6 +108,11 @@ function createCallNode() {
       for(const c of children) {
         c.translateFromParent(0,dy)//dy)
       }
+      if(implicitParameter !== undefined) {                   ////Update Height of Iplicit Parameter
+        let tmp = implicitParameter.getBounds()
+        tmp.height = bounds.y + bounds.height + CALL_YGAP
+        implicitParameter.updateBounds(tmp)
+      }
     },
 
     translateFromParent(dx,dy) {
@@ -115,6 +120,12 @@ function createCallNode() {
       bounds.y += dy
       for(const c of children) {
         c.translateFromParent(0,dy)//dy)
+      }
+
+      if(implicitParameter !== undefined) {                  ////Update Height of Iplicit Parameter
+        let tmp = implicitParameter.getBounds()
+        tmp.height = bounds.y + bounds.height + CALL_YGAP
+        implicitParameter.updateBounds(tmp)
       }
     },
 

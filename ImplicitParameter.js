@@ -23,8 +23,8 @@ function createImplicitParameter() {
       @returns true if the point is between the min and max x values, else false.
     */
     contains(p) {
-      return ((bounds.x <= p.x && p.x <= bounds.x + bounds.width)
-      && (bounds.y <= p.y && p.y <= bounds.y + bounds.height))
+      return (bounds.x <= p.x && p.x <= bounds.x + bounds.width)
+      //&& (bounds.y <= p.y && p.y <= bounds.y + bounds.height))
     },
 
 
@@ -89,7 +89,6 @@ function createImplicitParameter() {
       //bounds.y += dy
       for(const c of children) {
         c.translateFromParent(dx,0)
-
       }
     },
 
@@ -98,7 +97,9 @@ function createImplicitParameter() {
               width: bounds.width, height: bounds.height}
     },
 
-
+    updateBounds(newBounds) {
+      bounds = newBounds
+    },
 
     draw(panel) {
       //Draw the Top box of the implicit parameter
@@ -158,6 +159,7 @@ function createImplicitParameter() {
         console.log(mid)
         c.translateFromParent(mid - (c.getBounds().width/2),0)
       }
+
     },
 
     translateFromParent(dx,dy) {
