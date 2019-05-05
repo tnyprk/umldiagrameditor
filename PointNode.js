@@ -26,7 +26,16 @@ function createPointNode() {
     },
     getSpecificType() {
       return 'POINTNODE'
-    }
+    },
+
+        ///dummy function
+        addChild(n){
+          //console.log(n)
+        },
+
+        setParent(n){
+          //console.log(n)
+        }
 
 
   }

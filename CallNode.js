@@ -12,6 +12,9 @@ function createCallNode() {
   var signaled = false;
   var openBottom = false;
 
+  let children = [];
+  let parent = undefined;
+
   return {
 
     draw(panel) {
@@ -63,8 +66,10 @@ function createCallNode() {
     getConnectionPoint(d) {
       if (d > 0) 
         return {x: bounds.x + bounds.width, y: bounds.y}
-      else 
+      else {
         return {x: bounds.x, y: bounds.y }
+      }
+
     },
 
     //TO DO: figure out WHAT ON EARTH is going on in addEdge method.
@@ -72,13 +77,40 @@ function createCallNode() {
 
     },
 
+    addChild(n){
+      children.push(n)
+      let dy = bounds.y - n.getBounds().y
+      n.setParent(this)
+      n.translateFromParent(0,dy)
+    },
+
+
     translate(dx, dy) {
       //bounds.x += dx
       bounds.y += dy
+      for(const c of children) {
+        c.translateFromParent(0,dy)//dy)
+      }
     },
 
-    translateFromParent(dx) {
-      bounds.x += dx      
+    translateFromParent(dx,dy) {
+      bounds.x += dx    
+      bounds.y += dy
+      for(const c of children) {
+        c.translateFromParent(0,dy)//dy)
+      }
+    },
+
+    getParent() {
+      return parent
+    },
+
+    setParent(node) {
+      parent = node
+    },
+
+    getChildren() {
+      return children
     },
 
     getBounds() {

@@ -88,7 +88,7 @@ function createImplicitParameter() {
       bounds.x += dx
       //bounds.y += dy
       for(const c of children) {
-        c.translateFromParent(dx)//dy)
+        c.translateFromParent(dx,0)
 
       }
     },
@@ -155,7 +155,15 @@ function createImplicitParameter() {
       children.push(c)
       let mid = bounds.x + bounds.width / 2
       console.log(mid)
-      c.translateFromParent(mid - (c.getBounds().width/2))
+      c.translateFromParent(mid - (c.getBounds().width/2),0)
+    },
+
+    translateFromParent(dx,dy) {
+      bounds.x += dx    
+      bounds.y += dy
+      for(const c of children) {
+        c.translateFromParent(0,dy)//dy)
+      }
     },
 
     removeChild(node)

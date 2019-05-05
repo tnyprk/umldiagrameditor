@@ -126,8 +126,5 @@ function createCircleNode (size, color) {
       return props
     },
 
-    
-
-
   }
 }
