@@ -15,6 +15,8 @@ function createCallEdge() {
   let endLabel = undefined
 
   let signal = false
+
+  let offset = 0
   
   return {
 
@@ -80,14 +82,18 @@ function createCallEdge() {
       else {
         let direction = s.x - e.x
         let endPoint = end.getConnectionPoint(direction)
-        // endArrowHead.setPoints(endPoint, direction)
-        if(s.x + (s.width / 2) < endPoint.x)
-          points.push( { x: s.x + s.width, y: s.y } )
-        else
-          points.push( { x: s.x, y: s.y } )
+        let startPoint = start.getConnectionPoint(direction * -1)
+        startPoint.y += offset
+        endPoint.y += offset
+
+        points.push(startPoint)
         points.push(endPoint)
       }
       return points
+    },
+
+    setOffset(newValue) {
+      offset = newValue
     },
 
     //////

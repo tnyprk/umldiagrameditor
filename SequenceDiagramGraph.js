@@ -166,6 +166,7 @@ function sequenceGraph() {
       if (n1 !== null && n2 !== null) {
         edge.connect(n1, n2);
         edges.push(edge);
+        n1.addEdge(edge)                     ////////////// TEMP ///////////
         return true;
       }
       return false;

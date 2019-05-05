@@ -13,6 +13,7 @@ function createCallNode() {
   var openBottom = false;
 
   let children = [];
+  let edges = []
   let parent = undefined;
 
   return {
@@ -64,28 +65,37 @@ function createCallNode() {
     },
 
     getConnectionPoint(d) {
-      let offset = (DEFAULT_HEIGHT + CALL_YGAP) * (children.length) //- 1)
-      console.log("Get Connection point")
-      console.log(children.length)
+      //let offset = (DEFAULT_HEIGHT + CALL_YGAP) * (children.length- 1)
+      //console.log("Get Connection point")
+      //console.log(children.length)
       if (d > 0) 
-        return {x: bounds.x + bounds.width, y: bounds.y + offset}
+        return {x: bounds.x + bounds.width, y: bounds.y }// + offset}
       else {
-        return {x: bounds.x, y: bounds.y + offset}
+        return {x: bounds.x, y: bounds.y }// + offset}
       }
 
     },
 
     //TO DO: figure out WHAT ON EARTH is going on in addEdge method.
-    addEdge(e, p1, p2) {
-
+    addEdge(e) {
+      if(e.getSpecificType() === 'CALLEDGE') {
+        let tmp = 0
+        for(let anEdge of edges) {
+          if(anEdge.getSpecificType() === 'CALLEDGE')
+            tmp += 1
+        }
+        e.setOffset((DEFAULT_HEIGHT + CALL_YGAP) * (tmp))
+      }                                                             ///// TEMP TEMP TEMP
+      edges.push(e)
     },
 
     addChild(n){
       children.push(n)
-      console.log("Add Child")
-      console.log(children.length)
+      //console.log("Add Child")
+      //console.log(children.length)
+      let offset = (DEFAULT_HEIGHT + CALL_YGAP) * (children.length- 1)
       
-      let dy = bounds.y - n.getBounds().y
+      let dy = bounds.y - n.getBounds().y + offset
       n.setParent(this)
       n.translateFromParent(0,dy)
       bounds.height += CALL_YGAP
