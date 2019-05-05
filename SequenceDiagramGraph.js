@@ -201,7 +201,7 @@ function sequenceGraph() {
         let edgeTypes = [
           createCallEdge(),
           createReturnEdge(),
-         // createNoteEdge()
+          createNoteEdge()
         ];
         return edgeTypes;
     }
