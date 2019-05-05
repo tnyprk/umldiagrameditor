@@ -108,6 +108,13 @@ document.addEventListener("DOMContentLoaded", function() {
         let edge = selectedTool.clone();
         let mousePoint = mouseLocation(event);
         let connectedNode = sequencegraph.findNode(mousePoint);
+        let startNode = sequencegraph.findNode(dragStartPoint);
+        if(startNode.getSpecificType() === "IMPLICITPARAMETERNODE"){
+          dragStartPoint = undefined;
+          edge = undefined;
+          repaint()
+          return
+        }
         if (connectedNode) {
           if (sequencegraph.connect(dragStartPoint, mousePoint, edge)) {
             dragStartPoint = undefined;

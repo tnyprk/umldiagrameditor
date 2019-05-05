@@ -80,7 +80,7 @@ function createCallEdge() {
       else {
         let direction = s.x - e.x
         let endPoint = end.getConnectionPoint(direction)
-        endArrowHead.setPoints(endPoint, direction)
+        // endArrowHead.setPoints(endPoint, direction)
         if(s.x + (s.width / 2) < endPoint.x)
           points.push( { x: s.x + s.width, y: s.y } )
         else
@@ -158,6 +158,9 @@ function createCallEdge() {
       edge.setAttribute('y2', points[0].y)
       edge.setAttribute('stroke', 'black')
       edge.setAttribute('stroke-width', 2)
+      let endPoint = {x:points[1].x, y: points[0].y}
+      let direction = points[0].x - points[1].x
+      endArrowHead.setPoints(endPoint, direction)
       panel.appendChild(edge)
       if(points.length === 4) {
         const edge2 = document.createElementNS('http://www.w3.org/2000/svg', 'line')

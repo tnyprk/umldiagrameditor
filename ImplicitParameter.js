@@ -152,10 +152,12 @@ function createImplicitParameter() {
     },
 
     addChild(c) {
-      children.push(c)
-      let mid = bounds.x + bounds.width / 2
-      console.log(mid)
-      c.translateFromParent(mid - (c.getBounds().width/2),0)
+      if(c.getSpecificType() === "CALLNODE"){
+        children.push(c)
+        let mid = bounds.x + bounds.width / 2
+        console.log(mid)
+        c.translateFromParent(mid - (c.getBounds().width/2),0)
+      }
     },
 
     translateFromParent(dx,dy) {
