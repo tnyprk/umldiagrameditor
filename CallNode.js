@@ -18,26 +18,11 @@ function createCallNode() {
 
 
 
-
-  function updateSize() {
-      let temp = 0
-      for(let child of children){
-        if(child.getSpecificType() === 'CALLNODE') {
-          console.log(child.getBounds().height)
-          temp += ( child.getBounds().height + CALL_YGAP )
-        }
-      }
-      bounds.height = DEFAULT_HEIGHT + temp
-  }
-
-
-
-
   return {
 
     draw(panel) {
 
-      updateSize()
+      this.updateSize()
 
       if(openBottom){
 
@@ -108,7 +93,7 @@ function createCallNode() {
         e.setOffset((DEFAULT_HEIGHT + CALL_YGAP) * (tmp))
       } 
       */
-      if(edges.length > 0)
+      if(edges.length > 0 && e.getSpecificType() === 'CALLEDGE')
         e.setOffset( bounds.height - DEFAULT_HEIGHT)                 ///// TEMP TEMP TEMP
       edges.push(e)
     },
@@ -117,12 +102,12 @@ function createCallNode() {
       children.push(n)
       //console.log("Add Child")
       //console.log(children.length)
-      let offset = (DEFAULT_HEIGHT + CALL_YGAP) * (children.length- 1)
+      let offset = (bounds.height - DEFAULT_HEIGHT) //(DEFAULT_HEIGHT + CALL_YGAP) * (children.length- 1)
       
       let dy = bounds.y - n.getBounds().y + offset
       n.setParent(this)
       n.translateFromParent(0,dy)
-      updateSize()
+      //updateSize()
 
       //bounds.height += (DEFAULT_HEIGHT + CALL_YGAP)
     },
@@ -201,6 +186,20 @@ function createCallNode() {
 
     clone() {
       return createCallNode()
-    }
+    },
+
+    updateSize() {
+      let temp = 0
+      for(let child of children){
+        if(child.getSpecificType() === 'CALLNODE') {
+          child.updateSize()
+          console.log(child.getBounds().height)
+          temp += ( child.getBounds().height + CALL_YGAP )
+        }
+      }
+      bounds.height = DEFAULT_HEIGHT + temp
+    },
+
+
   }
 }
