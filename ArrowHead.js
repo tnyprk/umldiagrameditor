@@ -31,6 +31,19 @@ function createArrowHead(initialStyle)
   }
 
 
+  function drawArrow_HALF_V(panel) {
+
+    let line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+    line1.setAttribute('x1', point.x)
+    line1.setAttribute('x2', topPoint.x)
+    line1.setAttribute('y1', point.y)
+    line1.setAttribute('y2', topPoint.y)
+    line1.setAttribute('stroke', 'black')
+    line1.setAttribute('stroke-width', '2')
+    
+    panel.appendChild(line1)
+  }
+
 
   return {
     getStyle() {
@@ -44,6 +57,8 @@ function createArrowHead(initialStyle)
         return
       else if(style === 'V')
         drawArrow_V(panel)
+      else if(style === 'HALF_V')
+        drawArrow_HALF_V(panel)
 
     },
     setPoints(newPoint, direction) {

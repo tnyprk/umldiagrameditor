@@ -123,13 +123,13 @@ function createReturnEdge() {
       return startLabel
     },
     setMiddleLabel(text) {
-      startLabel = text
+      middleLabel = text
     },
     getMiddleLabel() {
       return middleLabel
     },
     setEndLabel(text) {
-      startLabel = text
+      endLabel = text
     },
     getEndLabel() {
       return endLabel

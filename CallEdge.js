@@ -135,13 +135,13 @@ function createCallEdge() {
       return startLabel
     },
     setMiddleLabel(text) {
-      startLabel = text
+      middleLabel = text
     },
     getMiddleLabel() {
       return middleLabel
     },
     setEndLabel(text) {
-      startLabel = text
+      endLabel = text
     },
     getEndLabel() {
       return endLabel
@@ -187,6 +187,14 @@ function createCallEdge() {
         edge3.setAttribute('stroke-width', 2)
         panel.appendChild(edge3)
       }
+
+      let text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+      text.textContent = middleLabel
+      text.setAttribute('x', (points[0].x + points[1].x) / 2)
+      text.setAttribute('y', points[0].y)
+      text.setAttribute('fill', '#000')
+
+      panel.appendChild(text)
       endArrowHead.draw(panel)
     },
 
