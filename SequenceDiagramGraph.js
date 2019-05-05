@@ -3,6 +3,8 @@
 function sequenceGraph() {
   let nodes = [];
   let edges = [];
+  let nodesToBeRemove = [];
+  let edgesToBeRemove = [];
   return {
     /**
      * if the node being added is a callnode, then it sets the callnode's 
@@ -45,11 +47,21 @@ function sequenceGraph() {
         }
       }
 
-      if (e.getSpecificType === "CALLEDGE" && e.getEnd().getChildren().length == 0)
+      if (e.getSpecificType() === "CALLEDGE" && e.getEnd().getChildren().length === 0)
       {
-        removeNode(e.getEnd)
+        this.removeNode(e.getEnd())
       }
-
+      if (e.getSpecificType() === "CALLEDGE" && e.getEnd().getSpecificType() === "IMPLICITPARAMETERNODE")
+      {
+        this.removeNode(e.getEnd())
+      }else if (e.getSpecificType() === "CALLEDGE" && e.getEnd().getChildren().length !== 0)
+      {
+        let child = e.getEnd().getChildren()
+        for(let i = 0; i< child.length;i++){
+          this.removeNode(child[i])
+        }
+        this.removeNode(e.getEnd())
+      }
     },
     
     /**
@@ -105,7 +117,7 @@ function sequenceGraph() {
         if (e.getStart() == node || e.getEnd() == node)
           for (let i = 0; i < edges.length; i++) {
             if (edges[i] === e) {
-              edges.splice(i, 1);
+              this.removeEdge(e)
             }
           }
       }
@@ -114,8 +126,8 @@ function sequenceGraph() {
           nodes.splice(i, 1);
           if(node.getSpecificType()==="IMPLICITPARAMETERNODE"){
             let children = node.getChildren();
-            nodes = nodes.filter(x => {
-              return children.indexOf( x ) < 0;
+              children.forEach(x => {
+              this.removeNode(x)
             })
           }
         }

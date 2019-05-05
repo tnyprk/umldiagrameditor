@@ -179,6 +179,14 @@ function createImplicitParameter() {
       node.setParent
     },
 
+    removeNode(e)
+    {
+       if (e === parent) parent = null; 
+       if (e.getParent() === this){
+          this.removeChild(e)
+       } 
+    },
+
     getType() {
       return 'NODE'
       },
