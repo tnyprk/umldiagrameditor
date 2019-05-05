@@ -54,7 +54,7 @@ function createCallNode() {
       implicitParameter = newValue
     },
 
-    setOpenBotton(newValue) {
+    setOpenBottom(newValue) {
       if(typeof newValue === "boolean")
         openBottom = newValue
     },
@@ -139,7 +139,7 @@ function createCallNode() {
       return signaled
     },
 
-    isOpenBottm() {
+    isOpenBottom() {
       return openBottom
     },
 
@@ -153,7 +153,7 @@ function createCallNode() {
 
     getProperties() 
     {
-      return []
+      return ['Open Bottom', 'text', this.isOpenBottom, this.setOpenBottom]
     },
 
     contains(p) {

@@ -8,7 +8,7 @@ function createCallEdge() {
 
 
   let lineStyle = 'solid'  // or 'dashed'
-  let startArrowHead = undefined
+  let startArrowHead = createArrowHead('NONE')
   let endArrowHead = createArrowHead('V')
   let startLabel = undefined
   let middleLabel = undefined
@@ -117,16 +117,16 @@ function createCallEdge() {
     },
     
     setStartArrowHead(newArrowHead) {
-      startArrowHead = newArrowHead
+      startArrowHead.setStyle(newArrowHead)
     },
     getStartArrowHead() {
-      return startArrowHead
+      return startArrowHead.getStyle()
     },
     setEndArrowHead(newArrowHead) {
-      endArrowHead = newArrowHead
+      endArrowHead.setStyle(newArrowHead)
     },
     getEndArrowHead() {
-      return endArrowHead
+      return endArrowHead.getStyle()
     },
     setStartLabel(text) {
       startLabel = text
@@ -210,11 +210,12 @@ function createCallEdge() {
     },
 
     getProperties() {
-      return []
-    }
-    
-
-
+      return ['Line Stype',       'text', this.getLineStyle,      this.setLineStyle,
+              'Start Arrow Head', 'text', this.getStartArrowHead, this.setStartArrowHead,
+              'End Arrow Head',   'text', this.getEndArrowHead,   this.setEndArrowHead,
+              'Start Label',      'text', this.getStartLabel,     this.setStartLabel,
+              'Middle Label',     'text', this.getMiddleLabel,    this.setMiddleLabel,
+              'End Label',        'text', this.getEndLabel,       this.setEndLabel ]    }
   }
 
 }

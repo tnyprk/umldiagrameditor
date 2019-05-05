@@ -40,8 +40,11 @@ function createArrowHead(initialStyle)
       style = s
     },
     draw(panel) {
-      if(style === 'V')
+      if(style === 'NONE') 
+        return
+      else if(style === 'V')
         drawArrow_V(panel)
+
     },
     setPoints(newPoint, direction) {
       point = newPoint

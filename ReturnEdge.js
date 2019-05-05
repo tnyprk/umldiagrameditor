@@ -8,7 +8,7 @@ function createReturnEdge() {
 
 
   let lineStyle = 'dashed'  // or 'dashed'
-  let startArrowHead = undefined
+  let startArrowHead = createArrowHead('NONE')
   let endArrowHead = createArrowHead('V')
   let startLabel = undefined
   let middleLabel = undefined
@@ -39,8 +39,8 @@ function createReturnEdge() {
       let points = this.getConnectionPoints()
       let offset = 8
       
-      let p1 = points.startPoint
-      let p2 = points.endPoint
+      let p1 = points.endPoint
+      let p2 = points.startPoint
       return { x: p1.x, y: p1.y - offset / 2, width: Math.abs(p2.x - p1.x), height: offset} 
       
     },
@@ -67,7 +67,7 @@ function createReturnEdge() {
 
 
       if(direction > 0) {//s.x + (s.width / 2) < endPoint.x) {
-        startPoint = { x: s.x + s.width, y: s.y + s.height} 
+        startPoint = { x: s.x, y: s.y + s.height} 
         endPoint = { x: e.x + e.width, y: startPoint.y}
       }
       else {
@@ -80,7 +80,6 @@ function createReturnEdge() {
         return {startPoint: endPoint, endPoint: startPoint }    // Right facing arrow for toolbar 
       }
       else {
-        endArrowHead.setPoints(endPoint, direction)
         return { startPoint: startPoint, endPoint: endPoint }
       }
     },
@@ -106,16 +105,16 @@ function createReturnEdge() {
     },
     
     setStartArrowHead(newArrowHead) {
-      startArrowHead = newArrowHead
+      startArrowHead.setStyle(newArrowHead)
     },
     getStartArrowHead() {
-      return startArrowHead
+      return startArrowHead.getStyle()
     },
     setEndArrowHead(newArrowHead) {
-      endArrowHead = newArrowHead
+      endArrowHead.setStyle(newArrowHead)
     },
     getEndArrowHead() {
-      return endArrowHead
+      return endArrowHead.getStyle()
     },
     setStartLabel(text) {
       startLabel = text
@@ -140,16 +139,22 @@ function createReturnEdge() {
     draw(panel) {
       const edge = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       let points = this.getConnectionPoints()
-      edge.setAttribute('x1', points.startPoint.x)
-      edge.setAttribute('y1', points.startPoint.y)
-      edge.setAttribute('x2', points.endPoint.x)
-      edge.setAttribute('y2', points.endPoint.y)
+      let sp = points.startPoint
+      let ep = points.endPoint
+
+      edge.setAttribute('x1', sp.x)
+      edge.setAttribute('y1', sp.y)
+      edge.setAttribute('x2', ep.x)
+      edge.setAttribute('y2', ep.y)
       edge.setAttribute('stroke', 'black')
       edge.setAttribute('stroke-width', 2)
       if(lineStyle === 'dashed')
         edge.setAttribute('stroke-dasharray', '8 4')
       panel.appendChild(edge)
       
+      startArrowHead.setPoints(sp, sp.x - ep.x)
+      endArrowHead.setPoints(ep, sp.x - ep.x)
+      startArrowHead.draw(panel)
       endArrowHead.draw(panel)
     },
 
@@ -173,7 +178,12 @@ function createReturnEdge() {
     },
 
     getProperties() {
-      return []
+      return ['Line Stype',       'text', this.getLineStyle,      this.setLineStyle,
+              'Start Arrow Head', 'text', this.getStartArrowHead, this.setStartArrowHead,
+              'End Arrow Head',   'text', this.getEndArrowHead,   this.setEndArrowHead,
+              'Start Label',      'text', this.getStartLabel,     this.setStartLabel,
+              'Middle Label',     'text', this.getMiddleLabel,    this.setMiddleLabel,
+              'End Label',        'text', this.getEndLabel,       this.setEndLabel ]
     }
     
 
