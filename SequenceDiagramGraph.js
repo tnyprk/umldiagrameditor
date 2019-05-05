@@ -100,7 +100,7 @@ function sequenceGraph() {
           n.draw(panel);
       }
       for (const n of nodes) {
-        if(n.getSpecificType() === "IMPLICITPARAMETERNODE")
+        if(n.getSpecificType() !== "CALLNODE")
           n.draw(panel);
       }
       for (const e of edges) {
