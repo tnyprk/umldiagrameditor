@@ -85,7 +85,7 @@ function createNoteNode() {
     getProperties() 
     {
       return ['Color', 'text', this.getColor, this.setColor,
-              'noteText', 'text', this.getText, this.setText]
+              'noteText', 'text_box', this.getText, this.setText]
     },
 
     containts(p) {
