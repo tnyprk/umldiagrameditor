@@ -10,9 +10,9 @@ function createCallEdge() {
   let lineStyle = 'solid'  // or 'dashed'
   let startArrowHead = createArrowHead('NONE')
   let endArrowHead = createArrowHead('V')
-  let startLabel = undefined
-  let middleLabel = undefined
-  let endLabel = undefined
+  let startLabel = ''
+  let middleLabel = ''
+  let endLabel = ''
 
   let signal = false
 
