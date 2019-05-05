@@ -59,15 +59,21 @@ function createReturnEdge() {
       let direction = s.x - e.x
 
 
-      let endPoint = end.getConnectionPoint(direction)
-      endPoint.y += s.height                             //Shift return edge to bottom of node
+      //let endPoint = end.getConnectionPoint(direction)
+      //endPoint.y += s.height                             //Shift return edge to bottom of node
+      //let startPoint = undefined
       let startPoint = undefined
+      let endPoint = undefined
 
-      if(s.x + (s.width / 2) < endPoint.x)
-        startPoint = { x: s.x + s.width, y: endPoint.y} 
-      else
-        startPoint = { x: s.x, y: endPoint.y} 
 
+      if(direction > 0) {//s.x + (s.width / 2) < endPoint.x) {
+        startPoint = { x: s.x + s.width, y: s.y + s.height} 
+        endPoint = { x: e.x + e.width, y: startPoint.y}
+      }
+      else {
+        startPoint = { x: s.x, y:s.y + s.height} 
+        endPoint = { x: e.x, y: startPoint.y}
+      }
 
       if(start.getSpecificType() === 'POINTNODE') {
         endArrowHead.setPoints(startPoint, direction * -1)
