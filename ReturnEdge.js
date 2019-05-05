@@ -38,11 +38,11 @@ function createReturnEdge() {
     getBounds() {
       let points = this.getConnectionPoints()
       let offset = 8
-      if(points.length === 2) {
-          let p1 = points.startPoint
-          let p2 = points.endPoint
-          return { x: p1.x, y: p1.y - offset / 2, width: Math.abs(p2.x - p1.x), height: offset} 
-        }
+      
+      let p1 = points.startPoint
+      let p2 = points.endPoint
+      return { x: p1.x, y: p1.y - offset / 2, width: Math.abs(p2.x - p1.x), height: offset} 
+      
     },
 
     contains(p) {
@@ -57,17 +57,26 @@ function createReturnEdge() {
       let e = end.getBounds()
 
       let direction = s.x - e.x
+
+
       let endPoint = end.getConnectionPoint(direction)
+      endPoint.y += s.height                             //Shift return edge to bottom of node
       let startPoint = undefined
 
-      endArrowHead.setPoints(endPoint, direction)
-
       if(s.x + (s.width / 2) < endPoint.x)
-        startPoint = { x: s.x + s.width, y: endPoint.y } 
+        startPoint = { x: s.x + s.width, y: endPoint.y} 
       else
-        startPoint = { x: s.x, y: endPoint.y } 
+        startPoint = { x: s.x, y: endPoint.y} 
 
-      return { startPoint: startPoint, endPoint: endPoint }
+
+      if(start.getSpecificType() === 'POINTNODE') {
+        endArrowHead.setPoints(startPoint, direction * -1)
+        return {startPoint: endPoint, endPoint: startPoint }    // Right facing arrow for toolbar 
+      }
+      else {
+        endArrowHead.setPoints(endPoint, direction)
+        return { startPoint: startPoint, endPoint: endPoint }
+      }
     },
 
     //////
