@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if(selected.getType() === 'EDGE'){
             graph.removeEdge(selected)
           }
+		  selected = undefined
         }
         repaint()
       }

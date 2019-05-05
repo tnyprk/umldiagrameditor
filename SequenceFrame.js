@@ -143,15 +143,16 @@ document.addEventListener("DOMContentLoaded", function() {
         if(selected.getType() === 'EDGE'){
           sequencegraph.removeEdge(selected)
         }
+		selected = undefined
       }
       repaint()
     }
   },false)
 /////////END DELETE
 
-sequencePanel.addEventListener("repaint",event=>{
-  repaint()
-})
+	sequencePanel.addEventListener("repaint",event=>{
+		repaint()
+	})
 
 
   ///repaint functions

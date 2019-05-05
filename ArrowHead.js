@@ -77,3 +77,7 @@ function createArrowHead(initialStyle)
 
   }
 }
+
+function getArrowStyles() {
+	return ['V', 'HALF_V', 'NONE']
+}

@@ -219,8 +219,8 @@ function createCallEdge() {
 
     getProperties() {
       return ['Line Stype',       'text', this.getLineStyle,      this.setLineStyle,
-              'Start Arrow Head', 'text', this.getStartArrowHead, this.setStartArrowHead,
-              'End Arrow Head',   'text', this.getEndArrowHead,   this.setEndArrowHead,
+              'Start Arrow Head', 'arrow', this.getStartArrowHead, this.setStartArrowHead,
+              'End Arrow Head',   'arrow', this.getEndArrowHead,   this.setEndArrowHead,
               'Start Label',      'text', this.getStartLabel,     this.setStartLabel,
               'Middle Label',     'text', this.getMiddleLabel,    this.setMiddleLabel,
               'End Label',        'text', this.getEndLabel,       this.setEndLabel ]    }

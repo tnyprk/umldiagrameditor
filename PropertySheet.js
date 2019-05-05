@@ -33,7 +33,7 @@ function PropertySheet(object, graph) {
         //cell.innerHTML = properties[i][j];
 		var cell2 = row.insertCell(-1);
 		var editor = document.createElement('BUTTON');
-		editor.innerHTML = properties[i+1];
+		editor.innerHTML = properties[i+1] + ' UNCAUGHT EDITOR';
 		if(properties[i+1] === 'text')
 		{
 			editor = document.createElement('INPUT');
@@ -50,14 +50,40 @@ function PropertySheet(object, graph) {
 		{
 			editor=document.createElement('select');
 			var op1 = new Option();
-			op1.value = 1;
+			op1.value = true;
 			op1.text = 'True';
 			editor.options.add(op1); 
 			var op2 = new Option();
-			op2.value = 1;
-			op2.text = 'false';
+			op2.value = false;
+			op2.text = 'False';
 			editor.options.add(op2); 
+			if(properties[i+2]())
+			{
+				editor.selectedIndex = 0;
+			}
+			else
+			{
+				editor.selectedIndex = 1;
+			}
 		}
+		else if(properties[i+1] === 'arrow')
+		{
+			editor=document.createElement('select');
+			var styles = getArrowStyles();
+			let current = properties[i+2]()
+			editor.selectedIndex = -1;
+			for(var j = 0; j < styles.length; j++)
+			{
+				let op = new Option();
+				op.value = styles[j];
+				op.text = styles[j];
+				editor.options.add(op); 
+				if(current === op.value)
+				{
+					editor.selectedIndex = j;
+				}
+			}
+		}	
 		/*else if(properties[i+1] === 'enums_editor')
 		{
 			editor = document.createElement('select');
@@ -86,6 +112,7 @@ function PropertySheet(object, graph) {
 			propertyEditor(object);
 			//alert('text')
 			document.getElementById('graphpanel').dispatchEvent(new CustomEvent("repaint"));
+			document.getElementById('sequencepanel').dispatchEvent(new CustomEvent("repaint"));
 		} 
 		propertySheet.appendChild(accept); 
 	}
