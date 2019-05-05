@@ -118,13 +118,17 @@ document.addEventListener("DOMContentLoaded", function() {
         if (connectedNode) {
           if (sequencegraph.connect(dragStartPoint, mousePoint, edge)) {
             dragStartPoint = undefined;
-            repaint();
+            repaintEdge();
             edge = undefined;
           } else {
             dragStartPoint = undefined;
             edge = undefined;
-            repaint();
+            repaintEdge();
           }
+        }else{
+          dragStartPoint = undefined
+          edge = undefined
+          repaintEdge()
         }
       }
     } else {
@@ -164,10 +168,10 @@ document.addEventListener("DOMContentLoaded", function() {
     };
   }
 
-  // function repaint() {
-  //   sequencePanel.innerHTML = "";
-  //   sequencegraph.draw();
-  // }
+  function repaintEdge() {
+    sequencePanel.innerHTML = "";
+    sequencegraph.draw();
+  }
 
   function paintEdge(dragStartPoint, mousePoint) {
     sequencePanel.innerHTML = "";

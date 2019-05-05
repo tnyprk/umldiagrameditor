@@ -115,13 +115,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log("here")
                     if(graph.connect(dragStartPoint,mousePoint,edge)){
                         dragStartPoint = undefined
-                        repaint()
+                        repaintEdge()
                         edge = undefined
                     }else{
                         dragStartPoint = undefined
                         edge = undefined
-                        repaint()
+                        repaintEdge()
                     }
+            }else{
+              dragStartPoint = undefined
+              edge = undefined
+              repaintEdge()
             }
         }
         }else{
@@ -161,10 +165,10 @@ function mouseLocation(event) {
     }
   }
   
-  // function repaint(){
-  //   panel.innerHTML = ''
-  //   graph.draw()
-  // }
+  function repaintEdge(){
+    panel.innerHTML = ''
+    graph.draw()
+  }
 
   function paintEdge(dragStartPoint,mousePoint){
     panel.innerHTML = ''

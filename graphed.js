@@ -132,7 +132,9 @@ function Graph() {
     getEdges(){
       return edges;
     },
-    /// not working to get right x and y
+    /*
+     Create Nodes
+    */ 
     getNodePrototypes(){
       let nodeTypes = [
             createCircleNode( 60, 'black'),
@@ -141,6 +143,9 @@ function Graph() {
         ]
         return nodeTypes;
     },
+    /*
+     Create Edges
+    */ 
     getEdgePrototypes(){
         let edgeTypes = [
           createLineEdge(),
