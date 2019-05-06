@@ -11,10 +11,16 @@ function createNoteEdge () {
         start = s
         end = e
       },
+    /**
+      Creates a copy of this note edge
+      @returns a new edge 
+    */
       clone() {
         return createNoteEdge();
       },
-
+      /*
+        draw the edge
+      */
       draw(panel) {
         const edge = document.createElementNS('http://www.w3.org/2000/svg', 'line')
         let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
@@ -28,17 +34,28 @@ function createNoteEdge () {
         edge.setAttribute('stroke-dasharray', '8 4')
         panel.appendChild(edge)
       },
-
+      /**
+      return the type of class
+      @returns the type of class
+      */
       getType() {
         return "EDGE"
       },
+      /**
+      @return the start node of edge
+      */
       getStart() {
         return start
       },
+      /**
+      @return the start node of edge
+      */
       getEnd() {
         return end
       },
-
+      /**
+      @return the type of edge
+      */
       getSpecificType() {
         return "NOTEEDGE"
       }
