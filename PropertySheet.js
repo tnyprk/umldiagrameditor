@@ -92,6 +92,7 @@ function PropertySheet(object, graph) {
     propertySheet.innerHTML = ''
     propertySheet.appendChild(table)
 	if(object !== undefined) {
+		//Adding submit button
 		var accept = document.createElement('BUTTON')
 		accept.innerHTML = 'Submit'
 		accept.onclick = function () {
