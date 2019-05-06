@@ -164,9 +164,26 @@ function sequenceGraph() {
       let n1 = this.findNode(point1);
       let n2 = this.findNode(point2);
       if (n1 !== null && n2 !== null) {
-        edge.connect(n1, n2);
+
+        if(n2.getSpecificType()==="IMPLICITPARAMETERNODE"){
+          let n2y = n2.getBounds().y
+          let height = n2.getTopRectangle().height
+          if(point2.y> n2y + height){
+            console.log("here")
+            let newCall = createCallNode();
+            this.add(newCall,point2)
+            edge.connect(n1,newCall);
+          }else{
+            edge.connect(n1, n2);
+          }
+        }else{
+          edge.connect(n1, n2);
+        }
+
         edges.push(edge);
         n1.addEdge(edge)                     ////////////// TEMP ///////////
+
+
         return true;
       }
       return false;

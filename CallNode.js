@@ -115,9 +115,11 @@ function createCallNode() {
 
     translate(dx, dy) {
       //bounds.x += dx
-      bounds.y += dy
-      for(const c of children) {
-        c.translateFromParent(0,dy)//dy)
+      if(!parent){
+        bounds.y += dy
+        for(const c of children) {
+          c.translateFromParent(0,dy)//dy)
+        }
       }
       if(implicitParameter !== undefined) {                   ////Update Height of Iplicit Parameter
         let tmp = implicitParameter.getBounds()
