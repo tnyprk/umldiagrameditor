@@ -163,26 +163,23 @@ function createReturnEdge() {
 
       // PAINT START TEXT FOR EDGE
       let startText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
-      startText.textContent = middleLabel
-      startText.setAttribute('x', sp.x)
+      startText.textContent = startLabel
+      startText.setAttribute('x', sp.x - 8)  // OFFSET FOR ARROW HEAD
       startText.setAttribute('y', sp.y)
-      startText.setAttribute('text-anchor', 'left')
+      startText.setAttribute('text-anchor', 'end')
       startText.setAttribute('fill', '#000')
 
       // PAINT END TEXT FOR EDGE
       let endText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
-      endText.textContent = middleLabel
-      endText.setAttribute('x', ep.x)
+      endText.textContent = endLabel
+      endText.setAttribute('x', ep.x + 8)  // OFFSET FOR ARROW HEAD
       endText.setAttribute('y', sp.y)
-      endText.setAttribute('text-anchor', 'right')
+      endText.setAttribute('text-anchor', 'start')
       endText.setAttribute('fill', '#000')
-
-
 
       panel.appendChild(startText)
       panel.appendChild(midText)
       panel.appendChild(endText)
-
 
       startArrowHead.setPoints(sp, sp.x - ep.x)
       endArrowHead.setPoints(ep, sp.x - ep.x)
