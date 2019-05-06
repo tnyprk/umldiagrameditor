@@ -7,7 +7,7 @@ function createReturnEdge() {
   let end
 
 
-  let lineStyle = 'dashed'  // or 'dashed'
+  let dashed = true  // or 'dashed'
   let startArrowHead = createArrowHead('NONE')
   let endArrowHead = createArrowHead('V')
   let startLabel = ''
@@ -97,11 +97,11 @@ function createReturnEdge() {
     // SEGMENTED LINE EDGE METHODS
     //////
 
-    setLineStyle(newStyle) {
-      lineStyle = newStyle      // solid or dashed
+    setDashed(newStyle) {
+      dashed = newStyle      // solid or dashed
     },
-    getLineStyle() {
-      return lineStyle
+    getDashed() {
+      return dashed
     },
     
     setStartArrowHead(newArrowHead) {
@@ -148,7 +148,7 @@ function createReturnEdge() {
       edge.setAttribute('y2', ep.y)
       edge.setAttribute('stroke', 'black')
       edge.setAttribute('stroke-width', 2)
-      if(lineStyle === 'dashed')
+      if(dashed === true)
         edge.setAttribute('stroke-dasharray', '8 4')
       panel.appendChild(edge)
       
@@ -207,9 +207,9 @@ function createReturnEdge() {
     },
 
     getProperties() {
-      return ['Line Stype',       'text', this.getLineStyle,      this.setLineStyle,
-              'Start Arrow Head', 'text', this.getStartArrowHead, this.setStartArrowHead,
-              'End Arrow Head',   'text', this.getEndArrowHead,   this.setEndArrowHead,
+      return ['Line Stype',       'boolean', this.getDashed,      this.setDashed,
+              'Start Arrow Head', 'arrow', this.getStartArrowHead, this.setStartArrowHead,
+              'End Arrow Head',   'arrow', this.getEndArrowHead,   this.setEndArrowHead,
               'Start Label',      'text', this.getStartLabel,     this.setStartLabel,
               'Middle Label',     'text', this.getMiddleLabel,    this.setMiddleLabel,
               'End Label',        'text', this.getEndLabel,       this.setEndLabel ]

@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
   sequencePanel.addEventListener("mousedown", event => {
     if (selectedTool) {
       if (selectedTool.getType() === "NODE") {
-        console.log("NODE " + selectedTool.getType());
+        //console.log("NODE " + selectedTool.getType());
         const item = selectedTool.clone();
         let mousePoint = mouseLocation(event);
         var rect = sequencePanel.getBoundingClientRect();
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (selectedTool.getType() === "EDGE") {
         let mousePoint = mouseLocation(event);
         selected = sequencegraph.findNode(mousePoint);
-        console.log(selected.getType());
+        //console.log(selected.getType());
         if (selected !== undefined) {
           dragStartPoint = mousePoint;
         }
@@ -88,11 +88,12 @@ document.addEventListener("DOMContentLoaded", function() {
       {
         if (selected !== undefined) {
           const bounds = selected.getBounds();
-
-          selected.translate(
-            dragStartBounds.x - bounds.x + mousePoint.x - dragStartPoint.x,
-            dragStartBounds.y - bounds.y + mousePoint.y - dragStartPoint.y
-          );
+			if (selected.getType() !== 'EDGE') {
+				selected.translate(
+				dragStartBounds.x - bounds.x + mousePoint.x - dragStartPoint.x,
+				dragStartBounds.y - bounds.y + mousePoint.y - dragStartPoint.y
+				);
+			}
           repaint();
         }
       }
