@@ -47,6 +47,10 @@ function sequenceGraph() {
         }
       }
 
+      if(e.getSpecificType() === "NOTEEDGE"){
+        this.removeNode(e.getEnd())
+      }
+
       if (e.getSpecificType() === "CALLEDGE" && e.getEnd().getChildren().length === 0)
       {
         this.removeNode(e.getEnd())
