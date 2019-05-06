@@ -10,9 +10,9 @@ function createReturnEdge() {
   let lineStyle = 'dashed'  // or 'dashed'
   let startArrowHead = createArrowHead('NONE')
   let endArrowHead = createArrowHead('V')
-  let startLabel = undefined
-  let middleLabel = undefined
-  let endLabel = undefined
+  let startLabel = ''
+  let middleLabel = ''
+  let endLabel = ''
 
   let signal = false
   
@@ -152,6 +152,38 @@ function createReturnEdge() {
         edge.setAttribute('stroke-dasharray', '8 4')
       panel.appendChild(edge)
       
+
+      // PAINT MIDDLE TEXT FOR EDGE
+      let midText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+      midText.textContent = middleLabel
+      midText.setAttribute('x', (sp.x + ep.x) / 2)
+      midText.setAttribute('y', sp.y)
+      midText.setAttribute('text-anchor', 'middle')
+      midText.setAttribute('fill', '#000')
+
+      // PAINT START TEXT FOR EDGE
+      let startText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+      startText.textContent = middleLabel
+      startText.setAttribute('x', sp.x)
+      startText.setAttribute('y', sp.y)
+      startText.setAttribute('text-anchor', 'left')
+      startText.setAttribute('fill', '#000')
+
+      // PAINT END TEXT FOR EDGE
+      let endText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+      endText.textContent = middleLabel
+      endText.setAttribute('x', ep.x)
+      endText.setAttribute('y', sp.y)
+      endText.setAttribute('text-anchor', 'right')
+      endText.setAttribute('fill', '#000')
+
+
+
+      panel.appendChild(startText)
+      panel.appendChild(midText)
+      panel.appendChild(endText)
+
+
       startArrowHead.setPoints(sp, sp.x - ep.x)
       endArrowHead.setPoints(ep, sp.x - ep.x)
       startArrowHead.draw(panel)
