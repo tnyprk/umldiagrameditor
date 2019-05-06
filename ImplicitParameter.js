@@ -71,7 +71,7 @@ function createImplicitParameter() {
 
     /**
      * Creates a copy of this implicit parameter
-     * @returns A new ImplicitParameter object with the same properties
+     * @returns A new ImplicitParameter object with the properties
      */
     clone() {
       let ret = createImplicitParameter()
@@ -193,7 +193,7 @@ function createImplicitParameter() {
       if(c.getSpecificType() === "CALLNODE"){
         children.push(c)
         let mid = bounds.x + bounds.width / 2
-        //console.log(mid)
+        console.log(mid)
         c.translateFromParent(mid - (c.getBounds().width/2),0)
       }
     },

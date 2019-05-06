@@ -114,7 +114,7 @@ function createLineEdge () {
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
       let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
 
-      //console.log(Math.abs(p.y - lineFOfX(p.x, sp, ep)))
+      console.log(Math.abs(p.y - lineFOfX(p.x, sp, ep)))
 
       return Math.abs(p.y - lineFOfX(p.x, sp, ep)) < 5
 

@@ -17,8 +17,8 @@ function Graph() {
       let n1 = this.findNode(point1);
       let n2 = this.findNode(point2);
       if (n1 !== null && n2 !== null) {
-        //console.log(n1.getBounds().x)
-        //console.log(n2.getBounds().x)
+        console.log(n1.getBounds().x)
+        console.log(n2.getBounds().x)
         edge.connect(n1, n2);
         edges.push(edge);
         return true;
