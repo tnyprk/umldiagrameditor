@@ -1,5 +1,9 @@
 'use strict'
 
+/**
+   A tool bar that contains node and edge prototype icons.
+   Exactly one icon is selected at any time.
+*/
 function ToolBar(graph,toolbar){
     const BUTTON_SIZE = 40;
     const panel = document.getElementById("graphpanel");
@@ -22,6 +26,11 @@ function ToolBar(graph,toolbar){
      toolbar.appendChild(button)
 
     return{
+    /**
+      Adds a node to the tool bar.
+      @param toolbar toolbar panel to attach
+      @param node the node to add
+   */
         addNode(toolbar,node){
             const button = document.createElement("button");
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
@@ -41,6 +50,11 @@ function ToolBar(graph,toolbar){
          })
             toolbar.appendChild(button)
         },
+    /**
+      Adds a node to the tool bar.
+      @param toolbar toolbar panel to attach
+      @param edge the edge to add
+   */
         addEdge(toolbar,edge){
             const button = document.createElement("button");
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
@@ -58,6 +72,11 @@ function ToolBar(graph,toolbar){
             })
             toolbar.appendChild(button)
         },
+    /**
+      Gets the node or edge prototype that is associated with
+      the currently selected button
+      @return a Node or Edge prototype
+   */
         getSelected(){
             return selectedTool
         }
