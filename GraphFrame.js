@@ -93,12 +93,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selected !== undefined) {
               const bounds = selected.getBounds();
               
-              selected.translate(
-                dragStartBounds.x - bounds.x 
-                  + mousePoint.x - dragStartPoint.x,
-                dragStartBounds.y - bounds.y 
-                  + mousePoint.y - dragStartPoint.y);
-              repaint()
+			  if (selected.getType() !== 'EDGE') {
+				  selected.translate(
+					dragStartBounds.x - bounds.x 
+					  + mousePoint.x - dragStartPoint.x,
+					dragStartBounds.y - bounds.y 
+					  + mousePoint.y - dragStartPoint.y);
+			  }
+			repaint()
             }
         }
     })
