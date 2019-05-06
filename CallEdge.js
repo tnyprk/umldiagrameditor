@@ -30,6 +30,10 @@ function createCallEdge() {
       start = s
       end = e
       start.addChild(end);
+      if(end.getSpecificType() === 'IMPLICITPARAMETERNODE') {
+        middleLabel = '<<create>>'
+      }
+
     },
     getStart() {
       return start
@@ -107,46 +111,13 @@ function createCallEdge() {
 
     //////
     // SEGMENTED LINE EDGE METHODS
-    //////
-
-    setLineStyle(newStyle) {
-      lineStyle = newStyle      // solid or dashed
-    },
-    getLineStyle() {
-      return lineStyle
-    },
-    
-    setStartArrowHead(newArrowHead) {
-      startArrowHead.setStyle(newArrowHead)
-    },
-    getStartArrowHead() {
-      return startArrowHead.getStyle()
-    },
-    setEndArrowHead(newArrowHead) {
-      endArrowHead.setStyle(newArrowHead)
-    },
-    getEndArrowHead() {
-      return endArrowHead.getStyle()
-    },
-    setStartLabel(text) {
-      startLabel = text
-    },
-    getStartLabel() {
-      return startLabel
-    },
+    ////// 
     setMiddleLabel(text) {
       middleLabel = text
     },
     getMiddleLabel() {
       return middleLabel
     },
-    setEndLabel(text) {
-      endLabel = text
-    },
-    getEndLabel() {
-      return endLabel
-    },
-
     setSignal(newValue) {
       signal = newValue
     },
@@ -156,6 +127,7 @@ function createCallEdge() {
     },
     
     draw(panel) {
+      // PAINT CALL EDGE
       const edge = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       let points = this.getPoints()
       edge.setAttribute('x1', points[0].x)
@@ -168,6 +140,8 @@ function createCallEdge() {
       let direction = points[0].x - points[1].x
       endArrowHead.setPoints(endPoint, direction)
       panel.appendChild(edge)
+      
+      // IF THIS IS A SELF CALL EDGE
       if(points.length === 4) {
         const edge2 = document.createElementNS('http://www.w3.org/2000/svg', 'line')
         edge2.setAttribute('x1', points[0].x)
@@ -188,10 +162,12 @@ function createCallEdge() {
         panel.appendChild(edge3)
       }
 
+      // PAINT TEXT FOR EDGE
       let text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
       text.textContent = middleLabel
       text.setAttribute('x', (points[0].x + points[1].x) / 2)
       text.setAttribute('y', points[0].y)
+      text.setAttribute('text-anchor', 'middle')
       text.setAttribute('fill', '#000')
 
       panel.appendChild(text)
@@ -218,12 +194,9 @@ function createCallEdge() {
     },
 
     getProperties() {
-      return ['Line Stype',       'text', this.getLineStyle,      this.setLineStyle,
-              'Start Arrow Head', 'arrow', this.getStartArrowHead, this.setStartArrowHead,
-              'End Arrow Head',   'arrow', this.getEndArrowHead,   this.setEndArrowHead,
-              'Start Label',      'text', this.getStartLabel,     this.setStartLabel,
-              'Middle Label',     'text', this.getMiddleLabel,    this.setMiddleLabel,
-              'End Label',        'text', this.getEndLabel,       this.setEndLabel ]    }
+      return ['Middle Label',     'text', this.getMiddleLabel,    this.setMiddleLabel,
+              'Signal', 'boolean', this.isSignal, this.setSignal]
+    }
   }
 
 }
