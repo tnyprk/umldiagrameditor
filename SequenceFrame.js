@@ -115,6 +115,19 @@ document.addEventListener("DOMContentLoaded", function() {
           repaint()
           return
         }
+        if(startNode.getSpecificType() === "NOTENODE" && edge.getSpecificType() === "NOTEEDGE"){
+          let dummyNode = createCircleNode(5,"white");
+          let rect = sequencePanel.getBoundingClientRect();
+          console.log(mousePoint)
+          dummyNode.translate(event.clientX - rect.left ,event.clientY - rect.top);
+          sequencegraph.add(dummyNode)
+          if(sequencegraph.connect(dragStartPoint,{x:mousePoint.x+5/2, y:mousePoint.y + 5/2},edge)){
+          edge = undefined
+          dragStartPoint = undefined
+          repaintEdge()
+          return
+          }
+        }
         if (connectedNode) {
           if (sequencegraph.connect(dragStartPoint, mousePoint, edge)) {
             dragStartPoint = undefined;

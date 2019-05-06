@@ -164,7 +164,7 @@ function sequenceGraph() {
       let n1 = this.findNode(point1);
       let n2 = this.findNode(point2);
       if (n1 !== null && n2 !== null) {
-
+        console.log(n2)
         if(n2.getSpecificType()==="IMPLICITPARAMETERNODE"){
           let n2y = n2.getBounds().y
           let height = n2.getTopRectangle().height

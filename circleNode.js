@@ -126,5 +126,8 @@ function createCircleNode (size, color) {
       return props
     },
 
+    getSpecificType(){
+      return "CIRCLENODE"
+    }
   }
 }

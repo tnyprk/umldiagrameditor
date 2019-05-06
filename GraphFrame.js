@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if(selectedTool.getType() === "NODE"){
                 console.log("NODE " + selectedTool.getType())
                 const item = selectedTool.clone()
-                var rect = panel.getBoundingClientRect();
+                let rect = panel.getBoundingClientRect();
                 //let size = item.getSize()
                 item.translate(event.clientX - rect.left ,event.clientY - rect.top)
                 graph.add(item)

@@ -37,20 +37,20 @@ function createNoteNode() {
     },
 
     getConnectionPoint(p) {
-      let center = { x: (x + size / 2), y: (y + size / 2) }
+      let center = { x: (bounds.x + bounds.width / 2), y: (bounds.y + bounds.height / 2) }
       let dx = p.x - center.x
       let dy = p.y - center.y
       let ret = p
       if (dx === 0 && dy === 0) {
         return p
       } else if (dx < -dy && dx >= dy) {
-        ret = { x: center.x, y: y }
+        ret = { x: center.x, y: bounds.y }
       } else if (dx >= dy && dx >= -dy) {
-        ret = { x: x + size, y: center.y }
+        ret = { x: bounds.x + bounds.width, y: center.y }
       } else if (dx >= -dy && dx < dy) {
-        ret = { x: center.x, y: y + size }
+        ret = { x: center.x, y: bounds.y + bounds.height }
       } else if (dx < dy && dx < -dy) {
-        ret = { x: x, y: center.y }
+        ret = { x: bounds.x, y: center.y }
       }
       return ret
     },
