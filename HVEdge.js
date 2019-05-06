@@ -1,21 +1,50 @@
 'use strict'
 
+
+/**
+ * Class to create an edge that connects two nodes
+ * The edge has a horizontal bar then a vertical bar
+ * @constructor
+ *
+ * @returns A new HVEdge object
+ */
 function createHVEdge () {
   let start
   let end
 
+  /**
+   * Computes the center point of a rectangle 
+   * @param rect The rectangle to find the center point of
+   *
+   * @return The center point of the rectangle {x, y}
+   */
   function center(rect) {
     return { x: rect.x + rect.width / 2, y: rect.y + rect.width / 2}
   }
 
   return {
+    /**
+     * Sets the start and end nodes for this edge
+     * @param s The new start node for this edge
+     * @param s The new end node for this edge
+     */
     connect(s, e) {
       start = s
       end = e
     },
+
+    /**
+     * Returns a new HVEdge
+     * @returns a new HVEdge object
+     */
     clone() {
       return createHVEdge();
     },
+
+    /**
+     * Draws the edge
+     * @param The panel to draw the edge on.
+     */
     draw(panel) {
       const hE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       const vE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
@@ -40,9 +69,35 @@ function createHVEdge () {
       panel.appendChild(hE)
       panel.appendChild(vE)
     },
+
+    /**
+     * Returns the type of this object 
+     * @returns the type of this object 'EDGE'
+     */
     getType() {
       return "EDGE"
     },
+
+    /**
+     * Returns the start node of this edge
+     * @returns The start node for this edge
+     */
+    getStart() {
+      return start
+    },
+
+    /**
+     * Returns the end node of this edge
+     * @returns The end node for this edge
+     */
+    getEnd() {
+      return end
+    },
+
+    /**
+     * Get the boundary box of the Edge
+     * @returns A rectangle that bounds the Edge
+     */
     getBounds() {
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
       let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
@@ -53,6 +108,13 @@ function createHVEdge () {
 
       return {x: bndsX, y: bndsY, width: Math.abs(ep.x-sp.x), height: Math.abs(ep.y-sp.y)}
     },
+
+    /**
+     * Determine if a point is inside the HVEdge
+     * @param p a point with x and y coordinates to check.
+     *
+     * @returns true if p is contained in this edge.
+     */
     contains(p) {
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
       let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
@@ -65,23 +127,24 @@ function createHVEdge () {
 
       return (Math.abs(midX - p.x) <= halfX && Math.abs(p.y - sp.y) < 4) ||
              (Math.abs(midY - p.y) <= halfY && Math.abs(p.x - ep.x) < 4)
-
-      /*
-      let middleJoint = {x: ep.x, y: sp.y}
-
-      if(middleJoint.x > sp.x)
-
-      let he = {x: sp.x, y: sp.y - 4, width: Math.abs(sp.x - ep.x), height: 8}
-      let ve = {x: ep.x - 4, y: ep.y, width: 8, height: Math.abs(sp.y - ep.y)}
-
-
-      return (he.x <= p.x && p.x <= he.x +he.width) && (he.y <= p.y && p.y <= he.y + he.height) ||
-             (ve.x <= p.x && p.x <= ve.x +ve.width) && (ve.y <= p.y && p.y <= ve.y + ve.height)
-      */
     },
+
+    /**
+     * Returns an array with the properties of this object
+     * in the form [name, type, getter, setter] for each property
+     * @returns An array wih the properties of this object.
+     */
     getProperties() {
       return []
-    }
+    },
+
+    /**
+     * Returns the specific type of this object 
+     * @returns the specific type of this object 'LINEEDGE'
+     */
+    getSpecificType(){
+      return "HVEDGE"
+    },
     
   }
 }

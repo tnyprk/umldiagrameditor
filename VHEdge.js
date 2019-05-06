@@ -1,21 +1,50 @@
 'use strict'
 
+
+/**
+ * Class to create an edge that connects two nodes
+ * The edge has a vertical bar then a horizontal bar
+ * @constructor
+ *
+ * @returns A new VHEdge object
+ */
 function createVHEdge () {
   let start
   let end
 
+  /**
+   * Computes the center point of a rectangle 
+   * @param rect The rectangle to find the center point of
+   *
+   * @return The center point of the rectangle {x, y}
+   */
   function center(rect) {
     return { x: rect.x + rect.width / 2, y: rect.y + rect.width / 2}
   }
 
   return {
+    /**
+     * Sets the start and end nodes for this edge
+     * @param s The new start node for this edge
+     * @param s The new end node for this edge
+     */
     connect(s, e) {
       start = s
       end = e
     },
+
+    /**
+     * Returns a new VHEdge
+     * @returns a new VHEdge object
+     */
     clone() {
       return createVHEdge();
     },
+
+    /**
+     * Draws the edge
+     * @param The panel to draw the edge on.
+     */
     draw(panel) {
       const hE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       const vE = document.createElementNS('http://www.w3.org/2000/svg', 'line')
@@ -40,10 +69,35 @@ function createVHEdge () {
       panel.appendChild(hE)
       panel.appendChild(vE)
     },
+
+    /**
+     * Returns the type of this object 
+     * @returns the type of this object 'EDGE'
+     */
     getType() {
       return "EDGE"
     },
 
+    /**
+     * Returns the start node of this edge
+     * @returns The start node for this edge
+     */
+    getStart() {
+      return start
+    },
+
+    /**
+     * Returns the end node of this edge
+     * @returns The end node for this edge
+     */
+    getEnd() {
+      return end
+    },
+
+    /**
+     * Get the boundary box of the Edge
+     * @returns A rectangle that bounds the Edge
+     */
     getBounds() {
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
       let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
@@ -53,6 +107,13 @@ function createVHEdge () {
 
       return {x: bndsX, y: bndsY, width: Math.abs(ep.x-sp.x), height: Math.abs(ep.y-sp.y)}
     },
+
+    /**
+     * Determine if a point is inside the VHEdge
+     * @param p a point with x and y coordinates to check.
+     *
+     * @returns true if p is contained in this edge.
+     */
     contains(p) {
       let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
       let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
@@ -67,8 +128,22 @@ function createVHEdge () {
              (Math.abs(midY - p.y) <= halfY && Math.abs(p.x - sp.x) < 4)
 
     },
+
+    /**
+     * Returns an array with the properties of this object
+     * in the form [name, type, getter, setter] for each property
+     * @returns An array wih the properties of this object.
+     */
     getProperties() {
       return []
-    }
+    },
+
+    /**
+     * Returns the specific type of this object 
+     * @returns the specific type of this object 'LINEEDGE'
+     */
+    getSpecificType(){
+      return "HVEDGE"
+    },
   }
 }
