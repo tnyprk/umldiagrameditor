@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }else{
             let mousePoint = mouseLocation(event)
             selected = graph.findNode(mousePoint)
+            if(selected === undefined)
+              selected = graph.findEdge(mousePoint)
             console.log(selected)
 			PropertySheet(selected)
             if (selected !== undefined) {
