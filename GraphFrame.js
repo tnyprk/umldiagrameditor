@@ -149,7 +149,24 @@ document.addEventListener('DOMContentLoaded', function () {
         repaint()
       }
     },false)
+
+    document.getElementById('Delete').addEventListener('click',(event)=>{
+          if(selected.getType() === 'NODE'){
+            graph.removeNode(selected)
+          }
+          if(selected.getType() === 'EDGE'){
+            graph.removeEdge(selected)
+          }
+		  selected = undefined
+        repaint()
+    })
 /////////END DELETE
+
+/////Tab clicks//////////
+document.getElementById("tabs").addEventListener('click',event=>{
+  selected = undefined
+})
+//////////////////
 
 	panel.addEventListener("repaint",event=>{
 		repaint()
