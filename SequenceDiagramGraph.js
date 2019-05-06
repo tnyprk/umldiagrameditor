@@ -164,7 +164,7 @@ function sequenceGraph() {
       let n1 = this.findNode(point1);
       let n2 = this.findNode(point2);
       if(edge.getSpecificType() === "NOTEEDGE"){
-        let dummyNode = createCircleNode(10,"white");
+        let dummyNode = createCircleNode(10,"black");
         dummyNode.translate(point2.x,point2.y);
         console.log(dummyNode.getBounds())
         console.log(point2)
