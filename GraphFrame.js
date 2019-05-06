@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     panel.addEventListener('mousedown',event=>{
         if(selectedTool){
             if(selectedTool.getType() === "NODE"){
-                console.log("NODE " + selectedTool.getType())
+                //console.log("NODE " + selectedTool.getType())
                 const item = selectedTool.clone()
                 let rect = panel.getBoundingClientRect();
                 //let size = item.getSize()
@@ -51,10 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 repaint()
         }
         if(selectedTool.getType() === "EDGE"){
-                console.log("EDGE click")
+                //console.log("EDGE click")
                 let mousePoint = mouseLocation(event)
                 selected = graph.findNode(mousePoint)
-                console.log(selected.getType())
+                //console.log(selected.getType())
                 if (selected !== undefined) {
                   dragStartPoint = mousePoint
                 }
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             selected = graph.findNode(mousePoint)
             if(selected === undefined)
               selected = graph.findEdge(mousePoint)
-            console.log(selected)
+            //console.log(selected)
 			PropertySheet(selected)
             if (selected !== undefined) {
               dragStartPoint = mousePoint
@@ -113,10 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if(selectedTool.getType() === "EDGE"){
                 let edge = selectedTool.clone()
                 let mousePoint = mouseLocation(event)
-                console.log("EDGE up")
+                //console.log("EDGE up")
                 let connectedNode = graph.findNode(mousePoint)
                 if(connectedNode){
-                    console.log("here")
+                    //console.log("here")
                     if(graph.connect(dragStartPoint,mousePoint,edge)){
                         dragStartPoint = undefined
                         repaintEdge()
