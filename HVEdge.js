@@ -42,17 +42,46 @@ function createHVEdge () {
     },
     getType() {
       return "EDGE"
-    }
+    },
+    getBounds() {
+      let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
+      let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
 
-    // This likely does not work. Not yet tested.
-    //    contains: p => {
-    // let start = {x: start.getConnectionPoint(end).x,
-    //                         y: start.getConnectionPoint(end).y}
-    //            let end = {x: start.getConnectionPoint(start).x,
-    //                       y: start.getConnectionPoint(start).y}
-    //            let center = {x: end.x, y: start.y}
-    //        return {Math.abs(p.y - start.y) < 4 && (p.x > start.x && p.x < end.x)
-    //              || Math.abs(p.x - end.x) < 4 && (p.y > start.y && p.x < end.y) }
-    //    }
+      let bndsX = sp.x <= ep.x ? sp.x : ep.x
+      let bndsY = sp.y <= ep.y ? sp.y : ep.y
+
+
+      return {x: bndsX, y: bndsY, width: Math.abs(ep.x-sp.x), height: Math.abs(ep.y-sp.y)}
+    },
+    contains(p) {
+      let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
+      let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
+      
+      let halfX = Math.abs(ep.x - sp.x) / 2
+      let midX = (ep.x + sp.x) / 2 
+
+      let halfY = Math.abs(ep.y - sp.y) / 2
+      let midY = (ep.y + sp.y) / 2
+
+      return (Math.abs(midX - p.x) <= halfX && Math.abs(p.y - sp.y) < 4) ||
+             (Math.abs(midY - p.y) <= halfY && Math.abs(p.x - ep.x) < 4)
+
+      /*
+      let middleJoint = {x: ep.x, y: sp.y}
+
+      if(middleJoint.x > sp.x)
+
+      let he = {x: sp.x, y: sp.y - 4, width: Math.abs(sp.x - ep.x), height: 8}
+      let ve = {x: ep.x - 4, y: ep.y, width: 8, height: Math.abs(sp.y - ep.y)}
+
+
+      return (he.x <= p.x && p.x <= he.x +he.width) && (he.y <= p.y && p.y <= he.y + he.height) ||
+             (ve.x <= p.x && p.x <= ve.x +ve.width) && (ve.y <= p.y && p.y <= ve.y + ve.height)
+      */
+    },
+    getProperties() {
+      return []
+    }
+    
   }
 }

@@ -55,26 +55,6 @@ function createLineEdge () {
 
       return Math.abs(p.y - lineFOfX(p.x, sp, ep)) < 5
 
-
-/*
-     const edge = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-      const panel = document.getElementById('graphpanel')
-      let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
-      let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
-      edge.setAttribute('x1', sp.x)
-      edge.setAttribute('y1', sp.y)
-      edge.setAttribute('x2', ep.x)
-      edge.setAttribute('y2', ep.y)
-      edge.setAttribute('stroke-width', 8)
-      panel.appendChild(edge)
-
-      let pt = panel.createSVGPoint()
-      pt.x = p.x
-      pt.y = p.y
-
-      //const pt = DOMPointReadOnly.fromPoint({x: p.x, y: p.y});
-      return edge.isPointInStroke(pt)
-      */
     },
     getProperties() {
       return []

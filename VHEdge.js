@@ -42,17 +42,33 @@ function createVHEdge () {
     },
     getType() {
       return "EDGE"
-    }
+    },
 
-    // This likely does not work. Not yet tested.
-    //    contains: p => {
-    // let start = {x: start.getConnectionPoint(end).x,
-    //                         y: start.getConnectionPoint(end).y}
-    //            let end = {x: start.getConnectionPoint(start).x,
-    //                       y: start.getConnectionPoint(start).y}
-    //            let center = {x: end.x, y: start.y}
-    //        return {Math.abs(p.y - start.y) < 4 && (p.x > start.x && p.x < end.x)
-    //              || Math.abs(p.x - end.x) < 4 && (p.y > start.y && p.x < end.y) }
-    //    }
+    getBounds() {
+      let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
+      let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
+      
+      let bndsX = sp.x <= ep.x ? sp.x : ep.x
+      let bndsY = sp.y <= ep.y ? sp.y : ep.y
+
+      return {x: bndsX, y: bndsY, width: Math.abs(ep.x-sp.x), height: Math.abs(ep.y-sp.y)}
+    },
+    contains(p) {
+      let sp = start.getConnectionPoint(center(end.getBounds())) // StartPoint
+      let ep = end.getConnectionPoint(center(start.getBounds())) // End Point
+
+      let halfX = Math.abs(ep.x - sp.x) / 2
+      let midX = (ep.x + sp.x) / 2 
+
+      let halfY = Math.abs(ep.y - sp.y) / 2
+      let midY = (ep.y + sp.y) / 2
+
+      return (Math.abs(midX - p.x) <= halfX && Math.abs(p.y - ep.y) < 4) ||
+             (Math.abs(midY - p.y) <= halfY && Math.abs(p.x - sp.x) < 4)
+
+    },
+    getProperties() {
+      return []
+    }
   }
 }
