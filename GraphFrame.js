@@ -206,6 +206,13 @@ function mouseLocation(event) {
     graph.draw()
     if (selected !== undefined) {
       const bounds = selected.getBounds()
+
+      if(selected.getType() === 'EDGE') {
+        drawGrabber(bounds.x, bounds.y)
+        drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
+        return
+      }
+      
       drawGrabber(bounds.x, bounds.y)
       drawGrabber(bounds.x + bounds.width, bounds.y)
       drawGrabber(bounds.x, bounds.y + bounds.height)      

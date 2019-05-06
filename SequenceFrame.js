@@ -219,6 +219,13 @@ document.getElementById("tabs").addEventListener('click',event=>{
     sequencegraph.draw();
     if (selected !== undefined) {
       const bounds = selected.getBounds();
+
+      if(selected.getType() === 'EDGE') {
+        drawSequenceGrabber(bounds.x, bounds.y);
+        drawSequenceGrabber(bounds.x + bounds.width, bounds.y + bounds.height);
+        return
+      }
+
       drawSequenceGrabber(bounds.x, bounds.y);
       drawSequenceGrabber(bounds.x + bounds.width, bounds.y);
       drawSequenceGrabber(bounds.x, bounds.y + bounds.height);
