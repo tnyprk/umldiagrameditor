@@ -272,7 +272,7 @@ function createCallNode() {
       for(let child of children){
         if(child.getSpecificType() === 'CALLNODE') {
           child.updateSize()
-          console.log(child.getBounds().height)
+          //console.log(child.getBounds().height)
           temp += ( child.getBounds().height + CALL_YGAP )
         }
       }

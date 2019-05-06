@@ -72,8 +72,8 @@ function createCallEdge() {
 
       if(end.getSpecificType() === 'CALLNODE' &&
           start.getImplicitParameter() === end.getImplicitParameter() ) {
-            console.log("start: " + start.getBounds())
-            console.log("end: " + end.getBounds())
+            //console.log("start: " + start.getBounds())
+            //console.log("end: " + end.getBounds())
         let p1 = { x: s.x + s.width,  y: e.y - 10 }
         let p2 = { x: e.x - e.width,  y: e.y }
         let p3 = { x: p1.x + e.width, y: p1.y }

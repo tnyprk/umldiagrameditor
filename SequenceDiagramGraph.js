@@ -77,7 +77,7 @@ function sequenceGraph() {
       for (let i = nodes.length - 1; i >= 0; i--) {
          const n = nodes[i];
         if (n.contains(point)) {
-          console.log(n.getSpecificType())
+          //console.log(n.getSpecificType())
           return n;}
       }
       return undefined;
@@ -170,8 +170,8 @@ function sequenceGraph() {
       if(edge.getSpecificType() === "NOTEEDGE"){
         let dummyNode = createCircleNode(10,"black");
         dummyNode.translate(point2.x,point2.y);
-        console.log(dummyNode.getBounds())
-        console.log(point2)
+        //console.log(dummyNode.getBounds())
+        //console.log(point2)
         this.add(dummyNode)
         edge.connect(n1,dummyNode);
         edges.push(edge);
