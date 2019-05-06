@@ -78,7 +78,6 @@ function createCallNode() {
      * @param newValue True if the CallNode had an open bottom
      */
     setOpenBottom(newValue) {
-      if(typeof newValue === "boolean")
         openBottom = newValue
     },
 
@@ -241,7 +240,7 @@ function createCallNode() {
      * @returns An array wih the properties of this object.
      */
     getProperties() {
-      return ['Open Bottom', 'text', this.isOpenBottom, this.setOpenBottom]
+      return ['Open Bottom', 'boolean', this.isOpenBottom, this.setOpenBottom]
     },
 
     /**

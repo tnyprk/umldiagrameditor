@@ -1,6 +1,11 @@
 'use strict'
 
-function PropertySheet(object, graph) {
+/** Class for Property Sheet
+ *  @constructor
+ *  @param object the object being selected for the property sheet
+ *
+ */
+function PropertySheet(object) {
     //Build array of properties
 	//var test = createCircleNode (5, 'red')
 	var properties = []
@@ -103,7 +108,10 @@ function PropertySheet(object, graph) {
 		propertySheet.appendChild(accept);
 	}
 		
-	// Changes property values to inputs using the set method
+	/** Adds editing functionality to the submit button of the property sheet
+	*  @param object the object being being edited
+	*
+	*/
 	function propertyEditor(obj){
 		var prop = obj.getProperties()
 		for (var i = 0; i < (prop.length/4); i++) {
